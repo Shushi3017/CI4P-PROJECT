@@ -12,8 +12,7 @@
 
 <!-- * Description Section -->
 <div align="center">
-This repository is a beginner-friendly CodeIgniter 4 template.  
-It helps teams quickly bootstrap backend + frontend projects, with simple sample modules that show how to extend the system.
+AD - CI4-PROJECT is a CodeIgniter 4 starter for quickly scaffolding backend + frontend apps with Docker.It follows a clean Controller → Service → Repository structure, uses Tailwind via CDN, and includes docs, migrations, and tests for fast onboarding.  
 </div>
 
 <br/>
