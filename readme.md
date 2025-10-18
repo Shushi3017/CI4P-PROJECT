@@ -4,22 +4,20 @@
 <br/>
 
 <div align="center">
-  <a href="https://github.com/zyx-0314/">
-    <img src="./assets/img/nyebe_white.png" alt="Nyebe" width="130" height="100">
+  <a href="https://github.com/shushi-3017/">
   </a>
 <!-- * Title Section -->
-  <h3 align="center">AD - CI4 Template</h3>
+  <h3 align="center">AD - CI4-PROJECT</h3>
 </div>
 
 <!-- * Description Section -->
 <div align="center">
-This repository is a beginner-friendly CodeIgniter 4 template.  
-It helps teams quickly bootstrap backend + frontend projects, with simple sample modules that show how to extend the system.
+AD - CI4-PROJECT is a CodeIgniter 4 starter for quickly scaffolding backend + frontend apps with Docker.It follows a clean Controller → Service → Repository structure, uses Tailwind via CDN, and includes docs, migrations, and tests for fast onboarding.  
 </div>
 
 <br/>
 
-![](https://visit-counter.vercel.app/counter.png?page=zyx-0314/ci4-template)
+![](https://visit-counter.vercel.app/counter.png?page=shushi-3017/CI4-PROJECT)
 
 <!-- ! Make sure it was similar to your github -->
 
@@ -55,7 +53,7 @@ It helps teams quickly bootstrap backend + frontend projects, with simple sample
 
 ## Overview
 
-This template provides a **minimal CodeIgniter 4 project layout** with conventions for file organization, commit practices, and simple modules.
+A basic CodeIgniter 4 project template with database support, organized structure, and ready-to-use modules.
 
 It is designed to be **easy to start with** and a **reference for adding new features**.
 
@@ -91,9 +89,6 @@ These are **sample modules** included (or suggested) for learning how to add fea
 #### Databases
 
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge\&logo=mysql\&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge\&logo=postgresql\&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge\&logo=mongodb\&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge\&logo=firebase\&logoColor=black)
 
 <!-- ! Keep only the used technology -->
 
@@ -156,7 +151,7 @@ Defaults used in this project (host mapping):
 
 | Service     | Host port |
 |-------------|-----------:|
-| nginx (app) | 8090      |
+| nginx (app) | 8017      |
 | phpMyAdmin  | 8091      |
 | MySQL       | 3390      |
 
