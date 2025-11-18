@@ -7,8 +7,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title><?= esc($title ?? null ? $title . ": " : "") ?>Sample kaya to hahahahaha!!!!</title>
-
     <!-- Default CDN includes -->
     <!-- Google Fonts: Playfair Display + Lato (global) -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
