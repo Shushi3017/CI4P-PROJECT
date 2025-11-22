@@ -4,20 +4,22 @@
 <br/>
 
 <div align="center">
-  <a href="https://github.com/shushi-3017/">
+  <a href="https://github.com/Shushi3017">
+    <img src="./backend/public/iron_ju.gif" alt="Iron Jugulist" width="130" height="100">
   </a>
 <!-- * Title Section -->
-  <h3 align="center">AD - CI4-PROJECT</h3>
+  <h3 align="center">AD-CI4-PROJECT-FINALS</h3>
 </div>
 
 <!-- * Description Section -->
 <div align="center">
-AD - CI4-PROJECT is a CodeIgniter 4 starter for quickly scaffolding backend + frontend apps with Docker.It follows a clean Controller → Service → Repository structure, uses Tailwind via CDN, and includes docs, migrations, and tests for fast onboarding.  
+This repository is a beginner-friendly CodeIgniter 4 template.  
+It helps teams quickly bootstrap backend + frontend projects, with simple sample modules that show how to extend the system.
 </div>
 
 <br/>
 
-![](https://visit-counter.vercel.app/counter.png?page=shushi-3017/CI4-PROJECT)
+![](https://visit-counter.vercel.app/counter.png?page=Shushi3017/CI4-PROJECT-FINALS)
 
 <!-- ! Make sure it was similar to your github -->
 
@@ -53,7 +55,7 @@ AD - CI4-PROJECT is a CodeIgniter 4 starter for quickly scaffolding backend + fr
 
 ## Overview
 
-A basic CodeIgniter 4 project template with database support, organized structure, and ready-to-use modules.
+This template provides a **minimal CodeIgniter 4 project layout** with conventions for file organization, commit practices, and simple modules.
 
 It is designed to be **easy to start with** and a **reference for adding new features**.
 
@@ -152,13 +154,13 @@ Defaults used in this project (host mapping):
 | Service     | Host port |
 |-------------|-----------:|
 | nginx (app) | 8017      |
-| phpMyAdmin  | 8091      |
-| MySQL       | 3390      |
+| phpMyAdmin  | 8017      |
+| MySQL       | 3317      |
 
 Database credentials used in examples and CI:
 
 - Host: localhost
-- Port: 3390
+- Port: 3317
 - Database: app
 - User: root
 - Password: root
