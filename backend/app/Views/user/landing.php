@@ -417,7 +417,7 @@
 
     <!-- Signup -->
     <?= view('user/Authentication/signup') ?>
-    
+
     <br>
     <div class="relative z-10 max-w-4xl mx-auto">
         <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 drop-shadow-md tracking-tight">
