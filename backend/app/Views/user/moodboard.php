@@ -1,10 +1,12 @@
 <?php
+
 /**
  * app/Views/user/moodboard.php
  * Usage:
- *  echo view('user/moodboard', ['title' => 'My Title']);
+ *  echo view('user/mo  ?>odboard', ['title' => 'My Title']);
  *
  */
+                                           
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,10 +14,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=   esc($title ?? 'Game UI Mood Board') ?></title>
+    <title><?= esc($title ?? 'Game UI Mood Board') ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Loaded Orbitron for headers and Exo 2 for UI text -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Loaded Orbitron for heade  ?>rs and Exo 2 for UI text -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&famil  ?>y=Exo+2:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Exo 2', sans-serif;
@@ -70,7 +72,7 @@
 </head>
 
 <body class="bg-black py-10 px-4 sm:px-8 min-h-screen flex justify-center">
-
+    <?= view('components/header', ['title' => $title ?? 'Game UI Mood Board']) ?>
     <!-- Main Canvas -->
     <div class="bg-surface w-full max-w-5xl shadow-[0_0_50px_rgba(6,182,212,0.15)] rounded-sm p-8 md:p-12 relative overflow-hidden border border-slate-800">
 
@@ -105,10 +107,10 @@
                         <div class="absolute inset-0 bg-accent blur-md opacity-40 group-hover:opacity-60 transition-opacity"></div>
                         <div class="relative w-full h-full border-2 border-cyan-400 flex items-center justify-center bg-slate-900 overflow-hidden">
                             <div class="w-full h-full absolute bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-30"></div>
-                            <span class="text-2xl font-bold text-white header-font">V</span>
+                            <span class="text-2xl font-bold text-white header-font">SG</span>
                         </div>
                     </div>
-                    <span class="header-font text-2xl text-white font-bold tracking-widest">VORTEX</span>
+                    <span class="header-font text-2xl text-white font-bold tracking-widest">SKYDrift Gameverse</span>
                 </div>
 
                 <!-- Product Mockup: Game Case -->
@@ -334,9 +336,10 @@
             </div>
 
         </div>
-
+   <?= view('components/footer') ?>
+   
     </div>
-
+   
 </body>
 
 </html>
