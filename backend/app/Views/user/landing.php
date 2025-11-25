@@ -416,7 +416,7 @@
     </div>
 
     <!-- Signup -->
-    <?= view('user/Authentication/signup') ?>
+    <?= view('user/Authentication/login') ?>
 
     <br>
     <div class="relative z-10 max-w-4xl mx-auto">
