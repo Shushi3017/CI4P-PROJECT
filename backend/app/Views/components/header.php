@@ -334,10 +334,10 @@
                 <div id="mobile-more-submenu" class="mobile-submenu bg-gray-900/30">
                     <div class="flex flex-col py-2">
                         <a href="#settings" class="pl-12 pr-6 py-3 text-gray-400 hover:text-blue-400 hover:bg-black/20 transition-colors flex items-center gap-2 text-lg">
-                            <div class="w-1 h-1 bg-purple-500 rounded-full"></div> Settings
+                            <div class="w-1 h-1 bg-purple-500 rounded-full"></div> Roadmap
                         </a>
                         <a href="#profile" class="pl-12 pr-6 py-3 text-gray-400 hover:text-blue-400 hover:bg-black/20 transition-colors flex items-center gap-2 text-lg">
-                            <div class="w-1 h-1 bg-purple-500 rounded-full"></div> Profile
+                            <div class="w-1 h-1 bg-purple-500 rounded-full"></div> Moodboard
                         </a>
                         <a href="#about" class="pl-12 pr-6 py-3 text-gray-400 hover:text-blue-400 hover:bg-black/20 transition-colors flex items-center gap-2 text-lg">
                             <div class="w-1 h-1 bg-purple-500 rounded-full"></div> About Us
