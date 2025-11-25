@@ -50,7 +50,7 @@
   </head>
 
   <body>
-
+<?= view('Components/header') ?>
 
       <main class="flex-grow flex flex-col items-center justify-center p-6 relative overflow-hidden">
 
@@ -68,7 +68,7 @@
           <!-- SIGNUP CARD -->
           <div class="bg-white w-full max-w-[450px] p-8 rounded-2xl shadow-2xl relative z-10 border border-slate-700/50">
 
-              <form action="<?= site_url('signup') ?>" method="post" class="space-y-5">
+              <form action="<?= site_url('/signup') ?>" method="post" class="space-y-5">
                   <?= csrf_field() ?>
 
                   <!-- Username -->
@@ -161,7 +161,7 @@
                   <div class="text-center mt-6">
                       <p class="text-slate-500 text-sm">
                           Don't have an account?
-                          <a href="<?= site_url('signup') ?>" class="text-brand-accent font-bold hover:underline">Sign Up</a>
+                          <a href="<?= site_url('/signup') ?>" class="text-brand-accent font-bold hover:underline">Sign Up</a>
                       </p>
                   </div>
               </form>

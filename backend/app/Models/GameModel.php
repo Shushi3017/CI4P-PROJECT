@@ -17,8 +17,9 @@ class GameModel extends Model
         'board_id',
         'name',
         'description',
-        'release_date',
-    ];
+        'genre',
+        'platform'
+        ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
