@@ -150,7 +150,7 @@
                         </ul>
                     </div>
                 <?php endif; ?>
-                <form id="signupForm" method="post" action="<?= site_url('auth/register') ?>" onsubmit="handleSignup(event)" class="space-y-6">
+                <form id="signupForm" method="post" action="<?= site_url('/signup') ?>" method="post" onsubmit="handleSignup(event)" class="space-y-6">
                     <?= csrf_field() ?>
 
                     <!-- Row 1: User Identity -->
