@@ -13,8 +13,7 @@
 
 <!-- * Description Section -->
 <div align="center">
-This repository is a beginner-friendly CodeIgniter 4 template.  
-It helps teams quickly bootstrap backend + frontend projects, with simple sample modules that show how to extend the system.
+A concise, beginner-friendly CodeIgniter 4 starter to quickly bootstrap backend and frontend projects. Includes sample modules (Auth, CRUD, Scheduler), Docker tooling, and clear conventions for file structure, commits, and testing.
 </div>
 
 <br/>
@@ -154,7 +153,7 @@ Defaults used in this project (host mapping):
 | Service     | Host port |
 |-------------|-----------:|
 | nginx (app) | 8017      |
-| phpMyAdmin  | 8017      |
+| phpMyAdmin  | 3065      |
 | MySQL       | 3317      |
 
 Database credentials used in examples and CI:

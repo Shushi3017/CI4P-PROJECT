@@ -69,7 +69,7 @@ services:
     image: phpmyadmin:latest
     profiles: [ "tools" ] # run only if you pass --profile tools
     ports:
-      - "8017:80"
+      - "3065:80"
     environment:
       PMA_HOST: mysql
       PMA_USER: root
