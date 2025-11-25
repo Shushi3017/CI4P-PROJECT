@@ -90,6 +90,7 @@
 </head>
 
 <body class="bg-background text-zinc-100 min-h-screen flex items-center justify-center p-4 selection:bg-primary selection:text-white overflow-x-hidden relative">
+<?= view('Components/header') ?>
 
     <!-- Animated Background Layers -->
     <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
@@ -112,16 +113,16 @@
         <div class="w-full p-8 md:p-10 bg-transparent">
             <div class="max-w-md mx-auto">
                 <!-- Header with Logo -->
-                <div class="mb-8 text-center">
+                <div class="mb-8 text-center mt-16 md:mt-20">
                     <div class="flex justify-center mb-4">
-                        <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center">
+                        <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mx-auto mb-2 rounded-full overflow-hidden bg-zinc-800/40 ring-1 ring-white/5 p-1">
                             <img src="https://tse1.mm.bing.net/th/id/OIP.8kXDEPgHh5oGzFGCJPzL5gHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
-                                 alt="Iron Judger"
-                                 class="w-full h-full object-contain max-w-full max-h-full rounded"
-                                 loading="lazy" decoding="async" style="background:transparent;">
+                                 alt="Gameverse logo"
+                                 class="w-full h-full object-cover"
+                                 loading="lazy" decoding="async" width="80" height="80">
                         </div>
                     </div>
-                    <h1 class="text-2xl font-semibold text-white mb-2">Create an account</h1>
+                    <h1 class="text-2xl md:text-3xl font-semibold text-white mb-1">Create an Account</h1>
                     <p class="text-sm text-zinc-400">Enter your details below to get started.</p>
                 </div>
 
@@ -269,7 +270,7 @@
                     <div class="text-center">
                         <p class="text-xs text-zinc-500">
                             Already have an account?
-                            <a href="<?= site_url('/signup') ?>" class="text-white font-medium hover:underline underline-offset-4 transition-colors">Sign in</a>
+                            <a href="<?= site_url('/login') ?>" class="text-white font-medium hover:underline underline-offset-4 transition-colors">Login</a>
                         </p>
                     </div>
                 </form>
