@@ -272,7 +272,7 @@
 
         <!-- CENTER SECTION: Logo -->
         <div id="nav-logo" class="absolute left-1/2 transform -translate-x-1/2 text-gray-400 font-bold text-xl tracking-[0.2em] opacity-80 transition-all duration-300">
-            ImageLogo
+            <img src="https://file.garden/ZrIPgCGn9kADc89z/skydriftlogo.png"   class="h-[80px] mt-[2.5rem] object-cover">>
         </div>
 
         <!-- RIGHT SECTION: Login -->
