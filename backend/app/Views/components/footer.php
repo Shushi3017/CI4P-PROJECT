@@ -70,8 +70,7 @@ $e = function ($s) {
             <div class="lg:border-l lg:border-gray-700 lg:pl-8">
                 <h3 class="text-brand-blue font-bold mb-4 text-sm uppercase tracking-widest">RESOURCES</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-brand-blue hover:underline hover:translate-x-1 transition-all duration-200 text-sm font-medium inline-block">API Documentation</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-brand-blue hover:underline hover:translate-x-1 transition-all duration-200 text-sm font-medium inline-block">Dev Tools</a></li>
+                    <li><a href="/moodboard" class="text-gray-400 hover:text-brand-blue hover:underline hover:translate-x-1 transition-all duration-200 text-sm font-medium inline-block">Moodboard</a></li>
                     <li><a href="/roadmap" class="text-gray-400 hover:text-brand-blue hover:underline hover:translate-x-1 transition-all duration-200 text-sm font-medium inline-block">Roadmap</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-brand-blue hover:underline hover:translate-x-1 transition-all duration-200 text-sm font-medium inline-block">Media Kit</a></li>
                 </ul>
