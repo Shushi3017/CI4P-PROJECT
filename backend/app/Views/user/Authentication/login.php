@@ -1,322 +1,170 @@
-<?php
-// app/Views/user/Authentication/signup.php
-// CodeIgniter 4 view version of your original HTML form.
-// Expects POST to route 'auth/register' (adjust as needed).
-//$validation = \Config\Services::validation();
-?>
+  <?php
+    // value="<?=      esc(set_value('username')) 
+    // value="<?=      esc(set_value('email')) 
+    // app/Views/user/Authentication/signup.php (view fragment converted to PHP)
+    // Assumes CodeIgniter 4 environment
+     $validation = \Config\Services::validation();
+    ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gameverse - Create Account</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
 
-        /* Smooth transitions for inputs */
-        .input-transition {
-            transition: all 0.2s ease-in-out;
-        }
 
-        /* Custom Background Animations */
-        @keyframes blob {
-            0% {
-                transform: translate(0px, 0px) scale(1);
-            }
 
-            33% {
-                transform: translate(30px, -50px) scale(1.1);
-            }
+  <head>
+      <script src="https://cdn.tailwindcss.com"></script>
 
-            66% {
-                transform: translate(-20px, 20px) scale(0.9);
-            }
+      <!-- 2. FontAwesome for Icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-            100% {
-                transform: translate(0px, 0px) scale(1);
-            }
-        }
+      <!-- 3. Google Fonts (Inter for high readability) -->
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+      <script>
+          tailwind.config = {
+              theme: {
+                  extend: {
+                      fontFamily: {
+                          sans: ['Inter', 'sans-serif'],
+                      },
+                      colors: {
+                          brand: {
+                              dark: '#0f172a',
+                              accent: '#6366f1',
+                              light: '#f8fafc',
+                          },
+                          social: {
+                              google: '#DB4437',
+                              github: '#333333',
+                          }
+                      },
+                      boxShadow: {
+                          boxShadow: {
+                              'glow': '0 0 20px rgba(99, 102, 241, 0.5)',
+                          }
+                      }
 
-        .animate-blob {
-            animation: blob 10s infinite;
-        }
+              }
+          }
+          }
+      </script>
+  </head>
 
-        .animation-delay-2000 {
-            animation-delay: 2s;
-        }
+  <body>
 
-        .animation-delay-4000 {
-            animation-delay: 4s;
-        }
 
-        /* Slow drift for the grid */
-        @keyframes drift {
-            0% {
-                background-position: 0 0;
-            }
+      <main class="flex-grow flex flex-col items-center justify-center p-6 relative overflow-hidden">
 
-            100% {
-                background-position: 24px 24px;
-            }
-        }
+          <!-- Decorative background blobs -->
+          <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-brand-accent rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+          <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
 
-        .animate-grid {
-            animation: drift 20s linear infinite;
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        background: '#09090b', // Zinc 950
-                        surface: '#18181b', // Zinc 900
-                        primary: '#6366f1', // Indigo 500
-                        primaryHover: '#4f46e5', // Indigo 600
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-
-<body class="bg-background text-zinc-100 min-h-screen flex items-center justify-center p-4 selection:bg-primary selection:text-white overflow-x-hidden relative">
-
-    <!-- Animated Background Layers -->
-    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <!-- Base Dark Layer -->
-        <div class="absolute inset-0 bg-zinc-950"></div>
-
-        <!-- Moving Grid Overlay -->
-        <div class="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:24px_24px] animate-grid"></div>
-
-        <!-- Animated Blobs -->
-        <div class="absolute top-0 -left-4 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob"></div>
-        <div class="absolute top-0 -right-4 w-96 h-96 bg-indigo-500 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-32 left-20 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob animation-delay-4000"></div>
-    </div>
-
-    <!-- Main Container -->
-    <div class="relative z-10 w-full max-w-xl bg-zinc-900/60 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-hidden ring-1 ring-white/10">
-
-        <!-- Form Content -->
-        <div class="w-full p-8 md:p-10 bg-transparent">
-            <div class="max-w-md mx-auto">
-                <!-- Header with Logo -->
-                <div class="mb-8 text-center">
-                    <div class="flex justify-center mb-4">
-                        <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center">
-                            <img src="https://tse1.mm.bing.net/th/id/OIP.8kXDEPgHh5oGzFGCJPzL5gHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
-                                 alt="Iron Judger"
-                                 class="w-full h-full object-contain max-w-full max-h-full rounded"
-                                 loading="lazy" decoding="async" style="background:transparent;">
-                        </div>
-                    </div>
-                    <h1 class="text-2xl font-semibold text-white mb-2">Create an account</h1>
-                    <p class="text-sm text-zinc-400">Enter your details below to get started.</p>
-                </div>
-
-                <?php
-                // Accept errors passed from controller as an array ($errors),
-                // or a Validation object ($validation), or flashdata('errors')
-                $viewErrors = [];
-
-                if (!empty($errors) && is_array($errors)) {
-                    $viewErrors = $errors;
-                } elseif (!empty($validation) && method_exists($validation, 'getErrors')) {
-                    $viewErrors = $validation->getErrors();
-                } elseif (session()->getFlashdata('errors')) {
-                    $flash = session()->getFlashdata('errors');
-                    $viewErrors = is_array($flash) ? $flash : [$flash];
-                }
-                ?>
-
-                <?php if (!empty($viewErrors)): ?>
-                    <div class="mb-4 bg-red-900/50 border border-red-800 text-red-200 px-4 py-3 rounded">
-                        <ul class="text-xs space-y-1">
-                            <?php foreach ($viewErrors as $err): ?>
-                                <li><?= esc($err) ?></li>
-                            <?php endforeach ?>
-                        </ul>
-                    </div>
-                <?php endif; ?>
-                <form id="signupForm" method="post" action="<?= site_url('auth/register') ?>" onsubmit="handleSignup(event)" class="space-y-6">
-                    <?= csrf_field() ?>
-
-                    <!-- Row 1: User Identity -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div class="relative">
-                            <input type="text" id="username" name="username" required
-                                value="<?= esc(old('username')) ?>"
-                                class="peer w-full px-3 pt-6 pb-2 bg-zinc-800/50 border border-zinc-700 rounded-md text-sm text-white placeholder-transparent focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary input-transition hover:bg-zinc-800/70"
-                                placeholder="username">
-                            <label for="username" class="absolute left-3 top-1 text-zinc-400 text-xs transition-all duration-200 pointer-events-none
-                                peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-placeholder-shown:opacity-80
-                                peer-focus:top-1 peer-focus:text-xs peer-focus:text-primary peer-focus:font-medium">
-                                Username
-                            </label>
-                        </div>
-                        <div class="relative">
-                            <input type="email" id="email" name="email" required
-                                value="<?= esc(old('email')) ?>"
-                                class="peer w-full px-3 pt-6 pb-2 bg-zinc-800/50 border border-zinc-700 rounded-md text-sm text-white placeholder-transparent focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary input-transition hover:bg-zinc-800/70"
-                                placeholder="email">
-                            <label for="email" class="absolute left-3 top-1 text-zinc-400 text-xs transition-all duration-200 pointer-events-none
-                                peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-placeholder-shown:opacity-80
-                                peer-focus:top-1 peer-focus:text-xs peer-focus:text-primary peer-focus:font-medium">
-                                Email
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Row 2: Full Name (Longer input fields) -->
-                    <div class="grid grid-cols-1 gap-5">
-                        <div class="relative">
-                            <input type="text" id="firstname" name="firstname" required
-                                value="<?= esc(old('firstname')) ?>"
-                                class="peer w-full px-3 pt-6 pb-2 bg-zinc-800/50 border border-zinc-700 rounded-md text-sm text-white placeholder-transparent focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary input-transition hover:bg-zinc-800/70"
-                                placeholder="First name">
-                            <label for="firstname" class="absolute left-3 top-1 text-zinc-400 text-xs transition-all duration-200 pointer-events-none
-                                peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-placeholder-shown:opacity-80
-                                peer-focus:top-1 peer-focus:text-xs peer-focus:text-primary peer-focus:font-medium">
-                                First name
-                            </label>
-                        </div>
-                        <div class="relative">
-                            <input type="text" id="middlename" name="middlename"
-                                value="<?= esc(old('middlename')) ?>"
-                                class="peer w-full px-3 pt-6 pb-2 bg-zinc-800/50 border border-zinc-700 rounded-md text-sm text-white placeholder-transparent focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary input-transition hover:bg-zinc-800/70"
-                                placeholder="Middle">
-                            <label for="middlename" class="absolute left-3 top-1 text-zinc-400 text-xs transition-all duration-200 pointer-events-none
-                                peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-placeholder-shown:opacity-80
-                                peer-focus:top-1 peer-focus:text-xs peer-focus:text-primary peer-focus:font-medium">
-                                Middle Name
-                            </label>
-                        </div>
-                        <div class="relative">
-                            <input type="text" id="lastname" name="lastname" required
-                                value="<?= esc(old('lastname')) ?>"
-                                class="peer w-full px-3 pt-6 pb-2 bg-zinc-800/50 border border-zinc-700 rounded-md text-sm text-white placeholder-transparent focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary input-transition hover:bg-zinc-800/70"
-                                placeholder="Last name">
-                            <label for="lastname" class="absolute left-3 top-1 text-zinc-400 text-xs transition-all duration-200 pointer-events-none
-                                peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-placeholder-shown:opacity-80
-                                peer-focus:top-1 peer-focus:text-xs peer-focus:text-primary peer-focus:font-medium">
-                                Last name
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Row 3: Security & Demographics -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div class="relative">
-                            <?php $selGender = old('gender'); ?>
-                            <select name="gender" required
-                                class="w-full px-3 pt-6 pb-2 bg-zinc-800/50 border border-zinc-700 rounded-md text-sm text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary appearance-none input-transition cursor-pointer peer hover:bg-zinc-800/70">
-                                <option value="" disabled <?= $selGender === '' ? 'selected' : '' ?> class="bg-zinc-900">Select...</option>
-                                <option value="male" <?= $selGender === 'male' ? 'selected' : '' ?> class="bg-zinc-900">Male</option>
-                                <option value="female" <?= $selGender === 'female' ? 'selected' : '' ?> class="bg-zinc-900">Female</option>
-                                <option value="non-binary" <?= $selGender === 'non-binary' ? 'selected' : '' ?> class="bg-zinc-900">Non-binary</option>
-                                <option value="other" <?= $selGender === 'other' ? 'selected' : '' ?> class="bg-zinc-900">Other</option>
-                                <option value="prefer-not-to-say" <?= $selGender === 'prefer-not-to-say' ? 'selected' : '' ?> class="bg-zinc-900">Prefer not to say</option>
-                            </select>
-                            <label class="absolute left-3 top-1 text-xs text-zinc-400 font-medium pointer-events-none">Gender</label>
-                            <i data-lucide="chevron-down" class="absolute right-3 top-4 w-4 h-4 text-zinc-500 pointer-events-none"></i>
-                        </div>
-
-                        <div class="relative">
-                            <input type="password" id="password" name="password" required
-                                value=""
-                                class="peer w-full px-3 pt-6 pb-2 bg-zinc-800/50 border border-zinc-700 rounded-md text-sm text-white placeholder-transparent focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary input-transition hover:bg-zinc-800/70"
-                                placeholder="Password">
-                            <label for="password" class="absolute left-3 top-1 text-zinc-400 text-xs transition-all duration-200 pointer-events-none
-                                peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-placeholder-shown:opacity-80
-                                peer-focus:top-1 peer-focus:text-xs peer-focus:text-primary peer-focus:font-medium">
-                                Password
-                            </label>
-
-                            <button type="button" aria-label="Toggle password visibility"
-                                class="absolute right-3 top-4 w-6 h-6 flex items-center justify-center text-zinc-400 hover:text-white transition-colors"
-                                onclick="(function(btn){ const input = document.getElementById('password'); const on = btn.querySelector('.eye-on'); const off = btn.querySelector('.eye-off'); if (input.type === 'password') { input.type = 'text'; if(on) on.classList.add('hidden'); if(off) off.classList.remove('hidden'); } else { input.type = 'password'; if(on) on.classList.remove('hidden'); if(off) off.classList.add('hidden'); } })(this)">
-                                <i data-lucide="eye" class="eye-on w-4 h-4"></i>
-                                <i data-lucide="eye-off" class="eye-off w-4 h-4 hidden"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Terms -->
-                    <div class="flex items-center gap-2 pt-2">
-                        <input id="terms" type="checkbox" name="terms" required class="w-4 h-4 rounded bg-zinc-800 border-zinc-700 text-primary focus:ring-offset-zinc-900 focus:ring-primary cursor-pointer" <?= old('terms') ? 'checked' : '' ?>>
-                        <label for="terms" class="text-xs text-zinc-400 select-none cursor-pointer">
-                            I agree to the <a href="#" class="text-white hover:underline transition-colors">Terms</a> and <a href="#" class="text-white hover:underline transition-colors">Privacy Policy</a>.
-                        </label>
-                    </div>
-
-                    <!-- Action -->
-                    <button type="submit" class="w-full bg-primary hover:bg-primaryHover text-white text-sm font-medium py-2.5 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-primary shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0">
-                        Create account
-                    </button>
-
-                    <!-- Footer -->
-                    <div class="text-center">
-                        <p class="text-xs text-zinc-500">
-                            Already have an account?
-                            <a href="<?= site_url('/signup') ?>" class="text-white font-medium hover:underline underline-offset-4 transition-colors">Sign in</a>
-                        </p>
-                    </div>
-                </form>
-            </div>
+        <!-- HEADER TEXT -->
+        <div class="text-center mb-8 z-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-brand-accent mb-2 tracking-tight drop-shadow-[0_6px_20px_rgba(99,102,241,0.15)]">
+                Login Today!
+            </h1>
         </div>
-    </div>
 
-    <!-- Simple Success Notification (Toast style) -->
-    <div id="toast" class="fixed bottom-8 right-8 transform translate-y-24 opacity-0 transition-all duration-500 z-50">
-        <div class="bg-zinc-900 border border-zinc-800 text-white px-6 py-4 rounded-lg shadow-2xl flex items-center gap-4 min-w-[300px]">
-            <div class="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center">
-                <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
-            </div>
-            <div>
-                <h4 class="text-sm font-medium">Account created</h4>
-                <p class="text-xs text-zinc-400 mt-0.5">Redirecting to dashboard...</p>
-            </div>
-        </div>
-    </div>
+          <!-- SIGNUP CARD -->
+          <div class="bg-white w-full max-w-[450px] p-8 rounded-2xl shadow-2xl relative z-10 border border-slate-700/50">
 
-    <script>
-        lucide.createIcons();
+              <form action="<?= site_url('signup') ?>" method="post" class="space-y-5">
+                  <?= csrf_field() ?>
 
-        function handleSignup(event) {
-            // keep client UX behavior; server-side will handle actual registration
-            event.preventDefault();
-            const btn = event.target.querySelector('button[type="submit"]');
-            const originalText = btn.innerText;
+                  <!-- Username -->
+                  <div>
+                      <label class="block text-slate-700 text-sm font-semibold mb-2 ml-1">Username</label>
+                      <div class="relative">
+                          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <i class="fa-solid fa-user text-slate-400"></i>
+                          </div>
+                          <input
+                              type="text"
+                              name="username"
 
-            btn.disabled = true;
-            btn.innerHTML = '<span class="inline-block w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin mr-2 align-middle"></span> Processing...';
+                              class="w-full pl-10 pr-4 py-3 rounded-lg bg-slate-50 border border-slate-200 text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent transition-all placeholder-slate-400"
+                              placeholder="GamerTag123"
+                              required>
+                      </div>
+                      <?php if ($validation->hasError('username')): ?>
+                          <p class="text-red-500 text-xs mt-1"><?= esc($validation->getError('username')) ?></p>
+                      <?php endif; ?>
+                  </div>
 
-            // Simulate a small delay for UX; form is submitted after (uncomment submit() to actually post)
-            setTimeout(() => {
-                // Show toast
-                const toast = document.getElementById('toast');
-                toast.classList.remove('translate-y-24', 'opacity-0');
+                  <!-- Email -->
+                  <div>
+                      <label class="block text-slate-700 text-sm font-semibold mb-2 ml-1">Email Address</label>
+                      <div class="relative">
+                          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <i class="fa-solid fa-envelope text-slate-400"></i>
+                          </div>
+                          <input
+                              type="email"
+                              name="email"
 
-                // Restore button
-                btn.innerHTML = originalText;
-                btn.disabled = false;
+                              class="w-full pl-10 pr-4 py-3 rounded-lg bg-slate-50 border border-slate-200 text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent transition-all placeholder-slate-400"
+                              placeholder="you@example.com"
+                              required>
+                      </div>
+                      <?php if ($validation->hasError('email')): ?>
+                          <p class="text-red-500 text-xs mt-1"><?= esc($validation->getError('email')) ?></p>
+                      <?php endif; ?>
+                  </div>
 
-                // Optionally submit to server for real:
-                // event.target.submit();
-            }, 800);
-        }
-    </script>
-</body>
+                  <!-- Password -->
+                  <div>
+                      <label class="block text-slate-700 text-sm font-semibold mb-2 ml-1">Password</label>
+                      <div class="relative">
+                          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <i class="fa-solid fa-lock text-slate-400"></i>
+                          </div>
+                          <input
+                              type="password"
+                              name="password"
+                              class="w-full pl-10 pr-4 py-3 rounded-lg bg-slate-50 border border-slate-200 text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-transparent transition-all placeholder-slate-400"
+                              placeholder="••••••••"
+                              required>
+                      </div>
+                      <?php if ($validation->hasError('password')): ?>
+                          <p class="text-red-500 text-xs mt-1"><?= esc($validation->getError('password')) ?></p>
+                      <?php endif; ?>
+                  </div>
 
-</html>
+                  <!-- Submit Button -->
+                  <button type="submit"
+                      class="w-full bg-brand-accent hover:bg-indigo-600 text-white font-bold py-3.5 px-4 rounded-lg shadow-lg hover:shadow-glow transition-all duration-300 transform hover:-translate-y-0.5">
+                      Create Account
+                  </button>
+
+                  <!-- Divider -->
+                  <div class="flex items-center gap-4 my-4">
+                      <div class="h-px bg-slate-200 flex-1"></div>
+                      <span class="text-slate-400 text-sm">or continue with</span>
+                      <div class="h-px bg-slate-200 flex-1"></div>
+                  </div>
+
+                  <!-- Social Login -->
+                  <div class="grid grid-cols-2 gap-3">
+                      <a href="<?= site_url('signup?provider=google') ?>"
+                          class="flex items-center justify-center gap-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium py-2.5 px-4 rounded-lg transition-colors group">
+                          <i class="fab fa-google text-social-google group-hover:scale-110 transition-transform"></i>
+                          Google
+                      </a>
+                      <a href="<?= site_url('signup?provider=github') ?>"
+                          class="flex items-center justify-center gap-2 bg-[#24292F] hover:bg-[#333] text-white font-medium py-2.5 px-4 rounded-lg transition-colors group">
+                          <i class="fab fa-github group-hover:scale-110 transition-transform"></i>
+                          GitHub
+                      </a>
+                  </div>
+
+                  <!-- Login Link -->
+                  <div class="text-center mt-6">
+                      <p class="text-slate-500 text-sm">
+                          Already have an account?
+                          <a href="<?= site_url('login') ?>" class="text-brand-accent font-bold hover:underline">Log In</a>
+                      </p>
+                  </div>
+              </form>
+          </div>
+
+      </main></a> ?>"

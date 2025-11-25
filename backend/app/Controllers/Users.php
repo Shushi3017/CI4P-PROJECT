@@ -9,13 +9,22 @@ class Users extends BaseController
 
         return view('user/landing');
     }
- 
+  
+    public function signup(): string
+    {
+        return view('user/Authentication/signup');
+    }
+    public function login(): string
+    {
+
+        return view('user/Authentication/login');
+    }
     public function roadmap(): string
     {
 
         return view('user/roadmap');
     }
-    
+
     public function moodboard(): string
     {
 
