@@ -133,7 +133,7 @@
                   <!-- Submit Button -->
                   <button type="submit"
                       class="w-full bg-brand-accent hover:bg-indigo-600 text-white font-bold py-3.5 px-4 rounded-lg shadow-lg hover:shadow-glow transition-all duration-300 transform hover:-translate-y-0.5">
-                      Create Account
+                     Log In 
                   </button>
 
                   <!-- Divider -->
@@ -160,8 +160,8 @@
                   <!-- Login Link -->
                   <div class="text-center mt-6">
                       <p class="text-slate-500 text-sm">
-                          Already have an account?
-                          <a href="<?= site_url('login') ?>" class="text-brand-accent font-bold hover:underline">Log In</a>
+                          Don't have an account?
+                          <a href="<?= site_url('signup') ?>" class="text-brand-accent font-bold hover:underline">Sign Up</a>
                       </p>
                   </div>
               </form>
