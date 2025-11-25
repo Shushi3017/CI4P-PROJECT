@@ -1,4 +1,5 @@
 <?php
+
 /**
  * app/Views/user/moodboard.php
  * Moodboard view (cleaned)
@@ -10,7 +11,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?=       esc($title ?? 'Game UI Mood Board') ?></title>
+    <title><?= esc($title ?? 'Game UI Mood Board') ?></title>
 
     <!-- Tailwind via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,10 +20,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
+        }
+
         :root {
-            --accent: #06b6d4; /* cyan-500 */
-            --secondary: #d946ef; /* fuchsia-500 */
-            --surface: #0f172a; /* slate-900 */
+            --accent: #06b6d4;
+            /* cyan-500 */
+            --secondary: #d946ef;
+            /* fuchsia-500 */
+            --surface: #0f172a;
+            /* slate-900 */
         }
 
         body {
@@ -104,7 +110,7 @@
 </head>
 
 <body class="bg-black py-10 px-4 sm:px-8 min-h-screen flex justify-center">
-<?= view('Components/header') ?>
+    <?= view('Components/header') ?>
 
     <!-- Main Canvas (no header/footer includes per request) -->
     <div class="bg-surface w-full max-w-5xl shadow-[0_0_50px_rgba(6,182,212,0.15)] rounded-sm p-8 md:p-12 relative overflow-hidden border border-slate-800">
@@ -126,8 +132,8 @@
                                 <stop offset="1" stop-color="#d946ef" />
                             </linearGradient>
                         </defs>
-                        <rect x="2" y="2" width="44" height="44" rx="8" fill="url(#g)" opacity="0.12"/>
-                        <path d="M12 34 L20 14 L28 34 L36 14" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <rect x="2" y="2" width="44" height="44" rx="8" fill="url(#g)" opacity="0.12" />
+                        <path d="M12 34 L20 14 L28 34 L36 14" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
                 <div>
@@ -370,11 +376,25 @@
         </div>
 
         <!-- Footer area kept internal (no include) -->
-        <footer class="mt-10 text-center text-slate-500 text-xs">
-          <?= view('Components/footer') ?>
-        </footer>
+        <div class="h-24 md:h-28" aria-hidden="true"></div>
 
+        <footer class="absolute bottom-0 left-0 right-0 h-24 md:h-28 bg-gradient-to-t from-black/40 to-transparent border-t border-slate-800 flex items-center justify-between px-6 z-10">
+            <div class="flex items-center gap-4">
+            <div class="w-10 h-10 bg-gradient-to-br from-[#032329] to-[#00222b] rounded-md border border-slate-700 flex items-center justify-center shadow-[0_6px_20px_rgba(0,0,0,0.6)]">
+                <span class="text-white header-font font-bold">SD</span>
+            </div>
+            <div>
+                <div class="text-white text-sm header-font font-bold leading-tight">SKYDrift Gameverse</div>
+                <div class="text-slate-500 text-xs">© <?=   date('Y') ?> SKYDRIFT Studio</div>
+            </div>
+            </div>
+
+            </div>
+        </footer>
     </div>
+
+
+
 </body>
 
 </html>
