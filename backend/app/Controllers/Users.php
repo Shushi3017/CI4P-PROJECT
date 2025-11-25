@@ -4,11 +4,12 @@ namespace App\Controllers;
 
 class Users extends BaseController
 {
-    public function index(): string
+  public function index(): string
     {
 
-        return view('user/');
+        return view('user/landing');
     }
+ 
  
     public function roadmap(): string
     {
