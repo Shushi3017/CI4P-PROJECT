@@ -67,3 +67,10 @@
 #--------------------------------------------------------------------
 
 # logger.threshold = 4
+database.default.hostname = mysql
+database.default.database = app
+database.default.username = app
+database.default.password = app
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+database.default.port = 3306
