@@ -421,7 +421,7 @@
     <!-- Signup -->
     <div class="w-full flex justify-center items-center my-12" >
       
-            <?=      view('user/Authentication/signup') ?>
+            <?=      view('user/Authentication/login') ?>
 
     </div>
 
