@@ -135,6 +135,9 @@
         }
     </style> copy-->
     <style>
+
+
+
         /* Custom Font for the Tech/Gaming look */
         body {
             font-family: 'Rajdhani', sans-serif;
@@ -416,7 +419,11 @@
     </div>
 
     <!-- Signup -->
-    <?= view('user/Authentication/login') ?>
+    <div class="w-full flex justify-center items-center my-12" >
+      
+            <?=      view('user/Authentication/signup') ?>
+
+    </div>
 
     <br>
     <div class="relative z-10 max-w-4xl mx-auto">
