@@ -54,23 +54,31 @@ Skydrift Gameverse is a website where you can put your games into your personal 
 ---
 
 ## Overview
+This project is a CodeIgniter 4 web application designed as a small game-catalog and board management system with user accounts, permissions, and an admin dashboard.
 
-This template provides a **minimal CodeIgniter 4 project layout** with conventions for file organization, commit practices, and simple modules.
+It provides a clean CI4 structure with organized modules and serves as a reference for handling users, boards, and game listings.
 
-It is designed to be **easy to start with** and a **reference for adding new features**.
+### Purpose
+A simple but scalable template for managing users, game boards, and game entries with an admin-friendly interface.
 
-* **Purpose**: a clean starting point for CI4 apps.
-* **Audience**: developers who want a predictable structure and quick onboarding.
+### Audience
+Developers who want a straightforward CodeIgniter 4 implementation of:
+- user authentication
+- board/category management
+- game listings with images
+- admin-only controls
 
-### Key Components
+---
 
-These are **sample modules** included (or suggested) for learning how to add features:
+## Key Components
 
-| Component                 | Purpose                                                             | Notes                                                   |
-| ------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
-| **Auth (Sample)**         | Basic login/logout and role check (admin/user).                     | Uses CI4 sessions + MySQL `users` table.                |
-| **CRUD Module**           | Example entity (`Posts` or `Tasks`) with create/read/update/delete. | Demonstrates Controller → Service → Repository pattern. |
-| **Scheduler (Sample)**    | Simple to-do list with due dates.                                   | Shows how to extend with new tables and services.       |
+| Component           | Purpose                                                         | Notes                                                                 |
+|---------------------|-----------------------------------------------------------------|-----------------------------------------------------------------------|
+| **Auth Module**     | Handles login, registration, and session-based authentication.  | Uses CI4 Sessions + MySQL `users` table. Includes user roles.         |
+| **Boards Module**   | Manages game boards/categories (e.g., RPG, Shooter, Indie).     | Each board belongs to a user (`user_id`). CRUD + Admin controls.      |
+| **Games Module**    | Stores individual games with titles, covers, and board mapping. | Includes image URL support + Tailwind UI cards.                       |
+| **Admin Dashboard** | Central place for managing users, boards, and game entries.     | Designed with Tailwind. Only visible to admin-level users.            |
+
 
  <!-- ! Start simple. Use these modules as **learning samples**; extend or replace them based on your project’s needs. -->
 
