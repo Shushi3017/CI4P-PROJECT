@@ -5,7 +5,8 @@
 
 <div align="center">
   <a href="https://github.com/Shushi3017">
-    <img src="./backend/public/iron_ju.gif" alt="Iron Jugulist" width="130" height="100">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQppYFOWPhHZFqj-eWUYA9g_9Q3EBVMF04nDA&s" width="130"><br>
+    <img src="https://file.garden/ZrIPgCGn9kADc89z/skydriftlogo.png" alt="Iron Jugulis" width="130" height="100">
   </a>
 <!-- * Title Section -->
   <h3 align="center">AD-CI4-PROJECT-FINALS</h3>
@@ -13,7 +14,7 @@
 
 <!-- * Description Section -->
 <div align="center">
-A concise, beginner-friendly CodeIgniter 4 starter to quickly bootstrap backend and frontend projects. Includes sample modules (Auth, CRUD, Scheduler), Docker tooling, and clear conventions for file structure, commits, and testing.
+Skydrift Gameverse is a website where you can put your games into your personal boards. It is esentially a Pinterest but for games and heavily takes inspiration from said website. This project uses a concise, beginner-friendly CodeIgniter 4 starter to quickly bootstrap backend and frontend projects. Includes sample modules (Auth, CRUD, Scheduler), Docker tooling, and clear conventions for file structure, commits, and testing.
 </div>
 
 <br/>
@@ -211,14 +212,17 @@ AD-ProjectName/
 ---
 
 ## Resources
+## Resources
 
-| Title                   | Purpose                                                               | Link                                                                       |
-| ----------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| ChatGPT                 | General AI assistance for planning application architecture and docs. | [https://chat.openai.com](https://chat.openai.com)                         |
-| GitHub Copilot          | In-IDE code suggestions and boilerplate generation.                   | [https://github.com/features/copilot](https://github.com/features/copilot) |
-| YouTube “UI/UX Design”  | Video tutorials on modern web interface layouts and patterns.         | [https://www.youtube.com](https://www.youtube.com)                         |
-| Pinterest Design Boards | Inspiration for color schemes, typography, and component layouts.     | [https://www.pinterest.com](https://www.pinterest.com)                     |
-| Google Photos (Assets)  | Stock imagery and graphics used in UI mockups and documentation.      | [https://photos.google.com](https://photos.google.com)                     |
-| System Documentation    | Internal docs from PHP, MongoDB, and PostgreSQL used in development.  | — (see `/docs` folder in repo)                                             |
+| Title                      | Purpose                                                                   | Link                                                                           |
+| -------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Figma                      | UI mockups, wireframes, layout planning, and component design.            | https://www.figma.com                                                           |
+| Pinterest Design Boards    | Inspiration for color palettes, UI themes, and interaction patterns.       | https://www.pinterest.com                                                       |
+| ChatGPT                   | Assistance for debugging, documentation writing, architecture planning.   | https://chat.openai.com                                                         |
+| GitHub Copilot             | In-editor code suggestions and boilerplate generation.                     | https://github.com/features/copilot                                             |
+| YouTube UI/UX Tutorials    | Guides for building modern layouts and animations.                         | https://www.youtube.com                                                         |
+| Google Images / Photos     | Reference images and assets used for UI mockups.                           | https://photos.google.com                                                       |
+| System Documentation       | Official docs for PHP, MySQL, Tailwind, and CodeIgniter.                   | *(See `/docs` folder in repo.)*                                                |
+| File Garden       | Image File Hosting                   | https://filegarden.com/                                             |
 
 <!-- ! Add what tools aided you -->
