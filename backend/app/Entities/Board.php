@@ -10,6 +10,7 @@ class Board extends Entity
     protected $dates   = ['created_at', 'updated_at'];
     protected $casts   = [
         'id'          => 'int',
+        'user_id'     => 'int',
         'name'        => 'string',
         'description' => 'string',
     ];
