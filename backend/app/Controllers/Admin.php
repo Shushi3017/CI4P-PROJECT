@@ -38,4 +38,25 @@ class Admin extends BaseController
             'popularGenres' => $popularGenres,
         ]);
     }
+    function  adminlogin(){
+    return view('user/Authentication/login');
+    
+    $session = session();
+
+    if ($session->get('type') === 'admin') {
+        return redirect()->to('/admin-dashboard');
+    }
+
+    if ($session->has('type') && $session->get('type') !== 'admin') {
+        // Non-admin trying to access -> 404 and show login again
+        return $this->response
+            ->setStatusCode(404)
+            ->setBody(view('user/Authentication/login'));
+    }
+
+    // No session -> show login page
+    return view('user/Authentication/login');
+
+
+}
 }
