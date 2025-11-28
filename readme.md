@@ -224,7 +224,7 @@ AD-ProjectName/
 
 | Title                      | Purpose                                                                   | Link                                                                           |
 | -------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| Figma                      | UI mockups, wireframes, layout planning, and component design.            | https://www.figma.com                                                           |
+| Figma                      | UI mockups, wireframes, layout planning, and component design.            | https://www.figma.com/site/EofnuqdOVWUoQ3vDhS2oz3/Jugulis-Gameverse?node-id=0-1&t=20f4iWO7Ij1vL2lW-1                                                      |
 | Pinterest Design Boards    | Inspiration for color palettes, UI themes, and interaction patterns.       | https://www.pinterest.com                                                       |
 | ChatGPT                   | Assistance for debugging, documentation writing, architecture planning.   | https://chat.openai.com                                                         |
 | GitHub Copilot             | In-editor code suggestions and boilerplate generation.                     | https://github.com/features/copilot                                             |
@@ -232,5 +232,6 @@ AD-ProjectName/
 | Google Images / Photos     | Reference images and assets used for UI mockups.                           | https://photos.google.com                                                       |
 | System Documentation       | Official docs for PHP, MySQL, Tailwind, and CodeIgniter.                   | *(See `/docs` folder in repo.)*                                                |
 | File Garden       | Image File Hosting                   | https://filegarden.com/                                             |
-
+| Stack Overflow      | Help and Reference with Code and Database Design                   | https://stackoverflow.com/questions/49250955/better-way-to-make-the-shopping-cart-table-with-mysql                                             |
+| DEV Community       | Database design reference               | https://dev.to/ezzdinatef/ecommerce-database-design-1ggc   |
 <!-- ! Add what tools aided you -->
