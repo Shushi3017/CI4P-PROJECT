@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 
-class Users extends BaseController
+class Users extends Admin
 {
     public function index()
     {
@@ -98,8 +98,11 @@ public function authenticate()
         'lastname' => $user->lastname,
         'type' => $user->type,
     ]);
-
-    return redirect()->to('/'); // landing page for regular users
+    if ($user->type === 'admin') {
+        return redirect()->to('/admin-dashboard'); // admin dashboard
+    } else {
+        return redirect()->to('/'); // landing page for regular users
+    }
 }
 
     public function logout()
@@ -118,4 +121,5 @@ public function authenticate()
     {
         return view('user/moodboard');
     }
+    
 }
