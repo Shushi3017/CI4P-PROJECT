@@ -6,14 +6,15 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Users::index');
-$routes->get('/roadmap', 'Users::roadmap');
-$routes->post('authenticate', 'Users::authenticate');
-$routes->get('/signup', 'Users::signup');          // Signup form
-$routes->post('/signup', 'Users::register');       // Handle signup POST
-$routes->get('/login', 'Users::login');           // Login form
-$routes->post('/login', 'Users::authenticate');   // Handle login POST
-$routes->get('/logout', 'Users::logout');         // Logout action
+$routes->get('roadmap', 'Users::roadmap');
 
+$routes->get('signup', 'Users::signup');      // Signup form
+$routes->post('register', 'Users::register'); // Handle signup POST
+
+$routes->get('login', 'Users::login');        // Login form
+$routes->post('login', 'Users::authenticate'); // Handle login POST
+
+$routes->get('logout', 'Users::logout');      // Logout action
 
 $routes->get('/admin-dashboard', 'Admin::index');
 // Admin Dashboard
@@ -40,3 +41,4 @@ $routes->post('boards/update/(:num)', 'Board::updateBoard/$1');
 $routes->post('boards/delete/(:num)', 'Board::deleteBoard/$1');
 $routes->get('/explore-games', 'Games::explore');
 $routes->post('/games/add-to-board', 'Games::addToBoard');
+$routes->post('/games/delete/(:num)', 'Games::delete/$1');
