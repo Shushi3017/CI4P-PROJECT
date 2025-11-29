@@ -107,7 +107,7 @@ body::after {
     pointer-events: none;
     z-index: -1;
     background: 
-        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0,0,0,0.4)), /* top dark overlay */
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0,0,0.6)), /* top dark overlay */
         radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7) 100%); /* smooth vignette */
     background-blend-mode: multiply;
 }
@@ -295,9 +295,9 @@ body::after {
                     </div>
                     <div
                         class="dropdown-menu hidden absolute top-full left-0 mt-0 w-48 bg-gray-900 border border-gray-700 shadow-xl rounded-sm overflow-hidden">
-                        <a href="#rpg"
-                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition"> Explore Boards</a>
-                        <a href="#fps"
+                        <a href="/explore-games"
+                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition"> Populate Board</a>
+                        <a href="<?= base_url('make-board') ?>"
                             class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition"> Make Board</a>
                     </div>
                 </div>
@@ -336,7 +336,7 @@ body::after {
 
     <!-- Username -->
     <div class="text-xl font-bold tracking-wider text-gray-300 group-hover:text-glow transition duration-300">
-        <a href="<?= base_url('/profile') ?>"><?= esc($user['username']) ?></a>
+        <a href="<?= base_url('/profile') ?>"><?= esc($user->username) ?></a>
     </div>
 
     <!-- Hover Area Wrapper (IMPORTANT) -->
