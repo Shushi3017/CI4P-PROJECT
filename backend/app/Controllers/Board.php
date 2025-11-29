@@ -110,26 +110,22 @@ class Board extends BaseController
 
         return redirect()->to('/profile')->with('success', 'Board updated successfully!');
     }
+// Board.php
+public function deleteBoard($board_id)
+{
+    $session = session();
+    $user = $session->get('user');
+    if (!$user) return redirect()->to('/login');
 
-    // Delete board
-    public function deleteBoard($id)
-    {
-        $session = session();
-        $user = $session->get('user');
+    $boardModel = new \App\Models\BoardModel();
+    $board = $boardModel->where('id', $board_id)->where('user_id', $user->id)->first();
 
-        if (!$user) {
-            return redirect()->to('/signup');
-        }
+    if (!$board) return redirect()->back()->with('error', 'Board not found.');
 
-        $boardModel = new \App\Models\BoardModel();
-        $board = $boardModel->where('id', $id)->where('user_id', $user->id)->first();
+    $boardModel->delete($board_id);
 
-        if (!$board) {
-            return redirect()->to('/profile')->with('error', 'Board not found.');
-        }
+    return redirect()->back()->with('success', 'Board deleted successfully.');
+}
 
-        $boardModel->delete($id);
 
-        return redirect()->to('/profile')->with('success', 'Board deleted successfully!');
-    }
 }

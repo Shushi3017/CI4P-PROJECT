@@ -17,17 +17,17 @@ class Users extends BaseController
         return view('user/Authentication/signup');
     }
 
-    public function register() // POST endpoint for signup
+    public function register()
     {
         $session = session();
         $request = service('request');
 
         $validation = \Config\Services::validation();
 
-        $validation->setRule('username', 'Username', 'required|min_length[3]|max_length[50]|is_unique[users.username]'); 
+        $validation->setRule('username', 'Username', 'required|min_length[3]|max_length[50]|is_unique[users.username]');
         $validation->setRule('firstname', 'First Name', 'required');
         $validation->setRule('lastname', 'Last Name', 'required');
-        $validation->setRule('age', 'Age', 'permit_empty|integer');  
+        $validation->setRule('age', 'Age', 'permit_empty|integer|greater_than[0]|less_than[121]');
         $validation->setRule('email', 'Email', 'required|valid_email|is_unique[users.email]');
         $validation->setRule('password', 'Password', 'required|min_length[6]');
         $validation->setRule('terms', 'Terms', 'required');
@@ -35,8 +35,9 @@ class Users extends BaseController
         $post = $request->getPost();
 
         if (!$validation->run($post)) {
-            $session->setFlashdata('errors', $validation->getErrors());
-            return redirect()->back()->withInput();
+            return redirect()->back()
+                ->withInput()
+                ->with('errors', $validation->getErrors());
         }
 
         $userModel = new UserModel();
@@ -45,11 +46,11 @@ class Users extends BaseController
             'username'  => $post['username'],
             'firstname' => $post['firstname'],
             'lastname'  => $post['lastname'],
-            'age'       => $post['age'] ?? null,  
+            'age'       => $post['age'] ?? null,
             'email'     => $post['email'],
             'password'  => password_hash($post['password'], PASSWORD_DEFAULT),
-            'type'      => 'user',   // matches migration default
-            'status'    => 'active', // matches migration default
+            'type'      => 'user',
+            'status'    => 'active',
         ];
 
         $userModel->insert($data);

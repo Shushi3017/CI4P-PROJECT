@@ -43,7 +43,7 @@ $old = $old ?? [];
 
     <!-- Login Card -->
     <div class="bg-white w-full max-w-[450px] p-8 rounded-2xl shadow-2xl relative z-10 border border-slate-700/50">
-        <form action="<?= site_url('/authenticate') ?>" method="post" class="space-y-5" novalidate>
+        <form action="<?= site_url('login') ?>" method="post" class="space-y-5" novalidate>
             <?= csrf_field() ?>
 
             <!-- Username -->
