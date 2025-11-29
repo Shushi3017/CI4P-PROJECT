@@ -53,6 +53,8 @@
     <main class="max-w-6xl mx-auto px-6 pb-20 space-y-12">
 
         <!-- STATS -->
+
+
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div class="bg-[#1a1a1a] border border-white/20 p-6 rounded-xl shadow-xl text-center card-hover">
                 <p class="text-5xl font-bold"><?= esc($stats['registered']) ?></p>
@@ -134,7 +136,12 @@
                 </table>
             </div>
         </div>
-
+        <div class="flex justify-end mt-4">
+            <a href="<?= base_url('admin/games') ?>"
+                class="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-black font-bold rounded-full transition">
+                Manage Games
+            </a>
+        </div>
     </main>
 
     <?= view('components/footer') ?>

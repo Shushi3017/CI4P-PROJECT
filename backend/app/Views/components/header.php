@@ -107,7 +107,7 @@ body::after {
     pointer-events: none;
     z-index: -1;
     background: 
-        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0,0,0,0.4)), /* top dark overlay */
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0,0,0.6)), /* top dark overlay */
         radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7) 100%); /* smooth vignette */
     background-blend-mode: multiply;
 }

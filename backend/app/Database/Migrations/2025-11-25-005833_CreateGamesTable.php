@@ -16,17 +16,9 @@ class CreateGamesTable extends Migration
                 'auto_increment' => true,
             ],
 
-            'board_id' => [
-                'type'       => 'INT',
-                'constraint' => 11,
-                'unsigned'   => true,
-                'null'       => false,
-            ],
-
             'name' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
-                'null'       => false,
             ],
 
             'description' => [
@@ -34,15 +26,27 @@ class CreateGamesTable extends Migration
                 'null' => true,
             ],
 
+            'image' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 500,
+                'null'       => true,
+            ],
+
             'genre' => [
                 'type'       => 'VARCHAR',
-                'constraint' => 100,
+                'constraint' => 255,
                 'null'       => true,
             ],
 
             'platform' => [
                 'type'       => 'VARCHAR',
-                'constraint' => 100,
+                'constraint' => 255,
+                'null'       => true,
+            ],
+
+            'release_year' => [
+                'type'       => 'INT',
+                'constraint' => 4,
                 'null'       => true,
             ],
 
@@ -58,9 +62,6 @@ class CreateGamesTable extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-
-        $this->forge->addForeignKey('board_id', 'boards', 'id', 'CASCADE', 'CASCADE');
-
         $this->forge->createTable('games');
     }
 

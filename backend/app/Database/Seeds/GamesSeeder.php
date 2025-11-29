@@ -10,83 +10,39 @@ class GamesSeeder extends Seeder
     {
         $now = date('Y-m-d H:i:s');
 
-        $games = [
+        $data = [
             [
-                'board_id'     => 1,
-                'name'         => 'Elden Ring',
-                'description'  => 'Open-world fantasy action RPG by FromSoftware.',
-                'created_at'   => $now,
-                'updated_at'   => $now,
-            ],
-            [
-                'board_id'     => 1,
-                'name'         => 'Horizon Forbidden West',
-                'description'  => 'Post-apocalyptic action RPG with open world.',
-                'created_at'   => $now,
-                'updated_at'   => $now,
-            ],
-
-            [
-                'board_id'     => 2,
-                'name'         => 'God of War (2018)',
-                'description'  => 'Action-adventure game following Kratos and Atreus.',
-                'created_at'   => $now,
-                'updated_at'   => $now,
-            ],
-            [
-                'board_id'     => 2,
-                'name'         => 'Spider-Man: Miles Morales',
-                'description'  => 'Superhero action-adventure game by Insomniac Games.',
-                'created_at'   => $now,
-                'updated_at'   => $now,
-            ],
-
-            [
-                'board_id'     => 3,
-                'name'         => 'Stardew Valley',
-                'description'  => 'Farming simulation and RPG elements.',
-                'created_at'   => $now,
-                'updated_at'   => $now,
-            ],
-            [
-                'board_id'     => 3,
                 'name'         => 'Hollow Knight',
-                'description'  => 'Metroidvania action-adventure indie game.',
-                'created_at'   => $now,
-                'updated_at'   => $now,
-            ],
-
-            [
-                'board_id'     => 4,
-                'name'         => 'Call of Duty: Modern Warfare II (2022)',
-                'description'  => 'First-person shooter with multiplayer modes.',
+                'description'  => 'A beautiful hand-drawn metroidvania.',
+                'image'        => 'https://store-images.s-microsoft.com/image/apps.24270.13847644057609868.a4a91f76-8d1c-4e19-aa78-f4d27d2818fb.d96146d7-d00a-4db9-ad68-197b2f962a17?q=90&w=480&h=270',
+                'genre'        => 'Metroidvania',
+                'platform'     => 'PC, Switch, PS4, Xbox',
+                'release_year' => 2017,
                 'created_at'   => $now,
                 'updated_at'   => $now,
             ],
             [
-                'board_id'     => 4,
+                'name'         => 'Minecraft',
+                'description'  => 'Open world survival building game.',
+                'image'        => 'https://media.indiedb.com/images/games/1/13/12771/7.jpg',
+                'genre'        => 'Sandbox',
+                'platform'     => 'PC, Mobile, Consoles',
+                'release_year' => 2011,
+                'created_at'   => $now,
+                'updated_at'   => $now,
+            ],
+            [
                 'name'         => 'Valorant',
-                'description'  => 'Team-based tactical first-person shooter.',
-                'created_at'   => $now,
-                'updated_at'   => $now,
-            ],
-
-            [
-                'board_id'     => 5,
-                'name'         => 'Tetris Effect',
-                'description'  => 'Modern twist on classic Tetris puzzle game.',
-                'created_at'   => $now,
-                'updated_at'   => $now,
-            ],
-            [
-                'board_id'     => 5,
-                'name'         => 'Slay the Spire',
-                'description'  => 'Deck-building roguelike strategy game.',
+                'description'  => '5v5 tactical shooter.',
+                'image'        => 'https://pbs.twimg.com/media/GT_VN9BXQAA28su.jpg',
+                'genre'        => 'FPS',
+                'platform'     => 'PC',
+                'release_year' => 2020,
                 'created_at'   => $now,
                 'updated_at'   => $now,
             ],
         ];
 
-        $this->db->table('games')->insertBatch($games);
+        $this->db->table('games')->insertBatch($data);
     }
 }

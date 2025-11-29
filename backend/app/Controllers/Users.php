@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use CodeIgniter\Controller;
 
 class Users extends BaseController
 {
@@ -38,13 +39,13 @@ class Users extends BaseController
 
         $userModel = new UserModel();
         $data = [
-            'username' => $post['username'],
+            'username'  => $post['username'],
             'firstname' => $post['firstname'],
-            'lastname' => $post['lastname'],
-            'email' => $post['email'],
-            'password' => password_hash($post['password'], PASSWORD_DEFAULT),
-            'type' => 'user',
-            'status' => 'active',
+            'lastname'  => $post['lastname'],
+            'email'     => $post['email'],
+            'password'  => password_hash($post['password'], PASSWORD_DEFAULT),
+            'type'      => 'user',
+            'status'    => 'active',
         ];
 
         $userModel->insert($data);
@@ -58,51 +59,53 @@ class Users extends BaseController
         return view('user/Authentication/login');
     }
 
-public function authenticate()
-{
-    $session = session();
-    $request = service('request');
+    public function authenticate()
+    {
+        $session = session();
+        $request = service('request');
 
-    $validation = \Config\Services::validation();
-    $validation->setRule('username', 'Username', 'required');
-    $validation->setRule('password', 'Password', 'required');
+        $validation = \Config\Services::validation();
+        $validation->setRule('username', 'Username', 'required');
+        $validation->setRule('password', 'Password', 'required');
 
-    $post = $request->getPost();
+        $post = $request->getPost();
 
-    if (! $validation->run($post)) {
-        // Pass errors and old data to view
-        return view('user/Authentication/login', [
-            'errors' => $validation->getErrors(),
-            'old' => $post
-        ]);
+        if (! $validation->run($post)) {
+            return view('user/Authentication/login', [
+                'errors' => $validation->getErrors(),
+                'old' => $post
+            ]);
+        }
+
+        $userModel = new \App\Models\UserModel();
+        $user = $userModel->where('username', $post['username'])->first();
+
+        if (!$user || !password_verify($post['password'], $user->password)) {
+            return view('user/Authentication/login', [
+                'errors' => ['username' => 'Invalid username or password'],
+                'old' => $post
+            ]);
+        }
+
+        // Check if user is deactivated
+        if ($user->status === 'deactivated') {
+            return view('user/Authentication/login', [
+                'errors' => ['username' => 'Your account is deactivated. Please contact support.'],
+                'old' => $post
+            ]);
+        }
+
+        // Store full User entity in session
+        $session->set('user', $user);
+
+        // Redirect based on type
+        if ($user->type === 'admin') {
+            return redirect()->to('/admin-dashboard');
+        } else {
+            return redirect()->to('/'); // regular landing page
+        }
     }
 
-    $username = $post['username'];
-    $password = $post['password'];
-
-    $userModel = new \App\Models\UserModel();
-    $user = $userModel->where('username', $username)->first();
-
-    if (!$user || !password_verify($password, $user->password)) {
-        return view('user/Authentication/login', [
-            'errors' => ['username' => 'Invalid username or password'],
-            'old' => $post
-        ]);
-    }
-
-    $session->set('user', [
-        'id' => $user->id,
-        'username' => $user->username,
-        'email' => $user->email,
-        'firstname' => $user->firstname,
-        'lastname' => $user->lastname,
-        'type' => $user->type,
-        'status' => $user->status,
-        'age' => $user->age
-    ]);
-
-    return redirect()->to('/'); // landing page for regular users
-}
 
     public function logout()
     {
@@ -122,44 +125,65 @@ public function authenticate()
     }
 
     public function profile()
-{
-    $session = session();
-    $user = $session->get('user');
+    {
+        $session = session();
+        $user = $session->get('user');
 
-    if (!$user) {
-        return redirect()->to('/login');
+        if (!$user) {
+            return redirect()->to('/login');
+        }
+
+        $boardModel = new \App\Models\BoardModel();
+        $boardDetailModel = new \App\Models\BoardDetailModel();
+        $gameModel = new \App\Models\GameModel();
+
+        // 1. Get user's boards
+        $boards = $boardModel->where('user_id', $user->id)->findAll();
+
+        // 2. Get games per board
+        $gamesByBoardId = [];
+        foreach ($boards as $board) {
+            $gameIds = $boardDetailModel
+                ->where('board_id', $board->id)
+                ->findColumn('game_id') ?? [];
+
+            $gamesByBoardId[$board->id] = !empty($gameIds)
+                ? $gameModel->whereIn('id', $gameIds)->findAll()
+                : [];
+        }
+
+        return view('user/accountprofile', [
+            'user' => $user, // entity object
+            'boards' => $boards,
+            'gamesByBoardId' => $gamesByBoardId
+        ]);
     }
 
-    // Load models
-    $boardModel = new \App\Models\BoardModel();
-    $boardDetailModel = new \App\Models\BoardDetailModel();
-    $gameModel = new \App\Models\GameModel();
+    public function updateUser()
+    {
+        $session = session();
+        $user = $session->get('user');
 
-    // 1. Get user's boards
-    $boards = $boardModel->where('user_id', $user['id'])->findAll();
+        if (!$user) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Not logged in']);
+        }
 
-    // 2. Get games per board
-    $gamesByBoardId = [];
-foreach ($boards as $board) {
-    $gameIds = $boardDetailModel
-        ->where('board_id', $board->id) // <- use ->id
-        ->findColumn('game_id') ?? [];
+        $post = $this->request->getPost();
+        $userModel = new UserModel();
 
-    if (!empty($gameIds)) {
-        $gamesByBoardId[$board->id] = 
-            $gameModel->whereIn('id', $gameIds)->findAll();
-    } else {
-        $gamesByBoardId[$board->id] = [];
+        $data = [
+            'username'  => $post['username'],
+            'firstname' => $post['firstname'],
+            'lastname'  => $post['lastname'],
+            'age'       => $post['age'],
+            'email'     => $post['email'],
+        ];
+
+        $userModel->update($user->id, $data);
+
+        // Update session with fresh entity
+        $session->set('user', $userModel->find($user->id));
+
+        return $this->response->setJSON(['status' => 'success']);
     }
-}
-
-
-    // Pass everything to the view
-    return view('user/accountprofile', [
-        'user' => $user,
-        'boards' => $boards,
-        'gamesByBoardId' => $gamesByBoardId
-    ]);
-}
-
 }

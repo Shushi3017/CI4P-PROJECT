@@ -99,14 +99,23 @@ $user = $session->get('user'); // null if not logged in
                         <h3 class="text-2xl font-bold text-white"><?= esc($board->name) ?></h3>
                         <p class="text-gray-300 mt-2"><?= esc($board->description) ?></p>
                         <p class="text-sm text-gray-500 mt-4">Created: <?= esc($board->created_at) ?></p>
-                        <!-- EDIT BUTTON -->
+
+                        <!-- Edit Button -->
                         <a href="<?= base_url('boards/edit/' . $board->id) ?>"
                             class="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-black font-bold py-2 px-4 rounded-full transition-all duration-300">
                             Edit
                         </a>
+
+                        <!-- Delete Button -->
+                        <button onclick="openDeleteModal('board', <?= $board->id ?>, '<?= esc($board->name) ?>')"
+                            class="mt-4 ml-2 inline-block bg-red-500 hover:bg-red-600 text-black font-bold py-2 px-4 rounded-full transition-all duration-300">
+                            Delete
+                        </button>
+
                         <div class="absolute bottom-0 left-0 right-0 h-px bg-white/20"></div>
                     </div>
                 <?php endforeach; ?>
+
 
                 <!-- ADD BOARD CARD -->
                 <a href="<?= base_url('make-board') ?>">
@@ -133,9 +142,9 @@ $user = $session->get('user'); // null if not logged in
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         <?php if (!empty($gamesByBoardId[$board->id])): ?>
+                            <!-- Inside the Games loop -->
                             <?php foreach ($gamesByBoardId[$board->id] as $game): ?>
                                 <div class="bg-black/60 border border-white/10 rounded-xl p-4 shadow-lg hover:scale-105 transition flex flex-col items-center">
-
                                     <!-- Game Image -->
                                     <div class="h-40 w-full bg-gray-800 rounded-md mb-4 flex items-center justify-center overflow-hidden">
                                         <?php if (!empty($game->image)): ?>
@@ -148,8 +157,15 @@ $user = $session->get('user'); // null if not logged in
                                     <!-- Game Name + Subtitle -->
                                     <h4 class="text-xl font-bold text-white"><?= esc($game->name) ?></h4>
                                     <p class="text-gray-300 text-sm mt-1"><?= esc($board->description) ?></p>
+
+                                    <!-- Delete Button -->
+                                    <button onclick="openDeleteModal('game', <?= $game->id ?>, '<?= esc($game->name) ?>')"
+                                        class="mt-4 inline-block bg-red-500 hover:bg-red-600 text-black font-bold py-2 px-4 rounded-full transition-all duration-300">
+                                        Delete
+                                    </button>
                                 </div>
                             <?php endforeach; ?>
+
                         <?php else: ?>
                             <p class="text-gray-400 italic">No games yet for this board.</p>
                         <?php endif; ?>
@@ -197,42 +213,83 @@ $user = $session->get('user'); // null if not logged in
             </div>
         </div>
     </div>
-<script>
-function openEditUserModal() {
-    document.getElementById('editUserModal').classList.remove('hidden');
-}
-
-function closeEditUserModal() {
-    document.getElementById('editUserModal').classList.add('hidden');
-    document.getElementById('editUserMessage').innerHTML = '';
-}
-
-function saveEditUser() {
-    let user_id   = document.getElementById('edit_user_id').value;
-    let username  = document.getElementById('edit_username').value;
-    let firstname = document.getElementById('edit_firstname').value;
-    let lastname  = document.getElementById('edit_lastname').value;
-    let age       = document.getElementById('edit_age').value;
-    let email     = document.getElementById('edit_email').value;
-
-    fetch("/profile/update-user", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `user_id=${user_id}&username=${encodeURIComponent(username)}&firstname=${encodeURIComponent(firstname)}&lastname=${encodeURIComponent(lastname)}&age=${age}&email=${encodeURIComponent(email)}`
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === "success") {
-            document.getElementById('editUserMessage').innerHTML =
-                "<span class='text-green-400 font-bold'>Profile updated successfully!</span>";
-            setTimeout(() => { location.reload(); }, 1000); // reload to update info
-        } else {
-            document.getElementById('editUserMessage').innerHTML =
-                "<span class='text-red-400 font-bold'>"+data.message+"</span>";
+    <script>
+        function openEditUserModal() {
+            document.getElementById('editUserModal').classList.remove('hidden');
         }
-    });
-}
-</script>
+
+        function closeEditUserModal() {
+            document.getElementById('editUserModal').classList.add('hidden');
+            document.getElementById('editUserMessage').innerHTML = '';
+        }
+
+        function saveEditUser() {
+            let user_id = document.getElementById('edit_user_id').value;
+            let username = document.getElementById('edit_username').value;
+            let firstname = document.getElementById('edit_firstname').value;
+            let lastname = document.getElementById('edit_lastname').value;
+            let age = document.getElementById('edit_age').value;
+            let email = document.getElementById('edit_email').value;
+
+            fetch("/profile/update-user", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: `user_id=${user_id}&username=${encodeURIComponent(username)}&firstname=${encodeURIComponent(firstname)}&lastname=${encodeURIComponent(lastname)}&age=${age}&email=${encodeURIComponent(email)}`
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        document.getElementById('editUserMessage').innerHTML =
+                            "<span class='text-green-400 font-bold'>Profile updated successfully!</span>";
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1000); // reload to update info
+                    } else {
+                        document.getElementById('editUserMessage').innerHTML =
+                            "<span class='text-red-400 font-bold'>" + data.message + "</span>";
+                    }
+                });
+        }
+    </script>
+    <!-- DELETE MODAL -->
+    <div id="deleteModal" class="fixed inset-0 hidden bg-black/70 flex items-center justify-center z-50">
+        <div class="bg-[#1a1a1a] p-8 rounded-xl border border-white/20 w-full max-w-md text-center">
+            <h2 class="text-3xl font-bold mb-4 text-red-500">Confirm Delete</h2>
+            <p id="deleteModalText" class="mb-6 text-lg"></p>
+            <div class="flex justify-center gap-4">
+                <button onclick="closeDeleteModal()" class="px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">Cancel</button>
+                <form id="deleteForm" method="POST" class="inline">
+                    <button type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-600 rounded font-bold">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        let deleteType, deleteId;
+
+        function openDeleteModal(type, id, name) {
+            deleteType = type;
+            deleteId = id;
+            const modal = document.getElementById('deleteModal');
+            const text = document.getElementById('deleteModalText');
+            text.innerText = `Are you sure you want to delete this ${type}: "${name}"?`;
+
+            const form = document.getElementById('deleteForm');
+            if (type === 'board') {
+                form.action = `/boards/delete/${id}`;
+            } else if (type === 'game') {
+                form.action = `/games/delete/${id}`;
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.add('hidden');
+        }
+    </script>
 
 </body>
 
