@@ -459,18 +459,19 @@ $user = $session->get('user'); // null if not logged in
         <p class="text-indigo-100 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
             Stop losing track of your backlog. Create lists, rate titles, and share your gaming journey.
         </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-5">
-            <a href="#signup"
-                class="inline-block bg-white text-brand-accent text-indigo-500 font-bold py-3.5 px-10 rounded-full shadow-xl hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
-                role="button">
-                Get Started Free
-            </a>
-            <a href="#features"
-                class="inline-block bg-black/20 text-white border border-white/30 font-bold py-3.5 px-10 rounded-full hover:bg-black/40 hover:scale-105 transition-all duration-300 backdrop-blur-sm"
-                role="button">
-                View Features
-            </a>
-        </div>
+       <div class="flex flex-col sm:flex-row justify-center gap-5">
+    <a href="<?= $user ? base_url('make-board.php') : base_url('signup') ?>"
+       class="inline-block bg-white text-brand-accent text-indigo-500 font-bold py-3.5 px-10 rounded-full shadow-xl hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
+       role="button">
+        Get Started
+    </a>
+    <a href="/roadmap"
+       class="inline-block bg-black/20 text-white border border-white/30 font-bold py-3.5 px-10 rounded-full hover:bg-black/40 hover:scale-105 transition-all duration-300 backdrop-blur-sm"
+       role="button">
+        View Roadmap
+    </a>
+</div>
+
     </div>
     </div>
 

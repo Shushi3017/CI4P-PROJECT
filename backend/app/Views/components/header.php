@@ -95,8 +95,8 @@ body::before {
     background: url("https://i.pinimg.com/originals/80/5a/ec/805aecf07080d735a863dd4cb2d62fa7.gif") center/cover repeat;
     mix-blend-mode: screen;
     pointer-events: none;
-    z-index: 0;
-    opacity: 0.3;
+    z-index: -1;
+    opacity: 0.2;
 }
 
 /* Dark overlay + vignette */
@@ -105,9 +105,9 @@ body::after {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 1;
+    z-index: -1;
     background: 
-        linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), /* top dark overlay */
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0,0,0,0.4)), /* top dark overlay */
         radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7) 100%); /* smooth vignette */
     background-blend-mode: multiply;
 }
@@ -296,13 +296,9 @@ body::after {
                     <div
                         class="dropdown-menu hidden absolute top-full left-0 mt-0 w-48 bg-gray-900 border border-gray-700 shadow-xl rounded-sm overflow-hidden">
                         <a href="#rpg"
-                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">RPG
-                            Games</a>
+                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition"> Explore Boards</a>
                         <a href="#fps"
-                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">FPS
-                            Shooters</a>
-                        <a href="#strategy"
-                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">Strategy</a>
+                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition"> Make Board</a>
                     </div>
                 </div>
 
@@ -408,15 +404,7 @@ body::after {
                     <div class="flex flex-col py-2">
                         <a href="#rpg"
                             class="pl-12 pr-6 py-3 text-gray-400 hover:text-blue-400 hover:bg-black/20 transition-colors flex items-center gap-2 text-lg">
-                            <div class="w-1 h-1 bg-blue-500 rounded-full"></div> RPG Games
-                        </a>
-                        <a href="#fps"
-                            class="pl-12 pr-6 py-3 text-gray-400 hover:text-blue-400 hover:bg-black/20 transition-colors flex items-center gap-2 text-lg">
-                            <div class="w-1 h-1 bg-blue-500 rounded-full"></div> FPS Shooters
-                        </a>
-                        <a href="#strategy"
-                            class="pl-12 pr-6 py-3 text-gray-400 hover:text-blue-400 hover:bg-black/20 transition-colors flex items-center gap-2 text-lg">
-                            <div class="w-1 h-1 bg-blue-500 rounded-full"></div> Strategy
+                            <div class="w-1 h-1 bg-blue-500 rounded-full"></div> Make Board
                         </a>
                     </div>
                 </div>

@@ -6,11 +6,12 @@ $user = $session->get('user'); // null if not logged in
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-          <link rel="icon" type="image/x-icon" href="<?= base_url('favicon2.ico') ?>">
-
-    <title><?= $user['username'] ?> — Profile</title>
+    <link rel="icon" type="image/x-icon" href="<?= base_url('favicon2.ico') ?>">
+    <title><?= esc($user['username']) ?> — Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
     <style>
         body {
             font-family: 'Rajdhani', sans-serif;
@@ -50,13 +51,11 @@ $user = $session->get('user'); // null if not logged in
 <div class="max-w-6xl mx-auto px-6 pb-20">
 
     <!-- PROFILE CARD -->
-    <div class="relative border border-white/40 rounded-xl p-8 mb-16 bg-black/40 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-
+    <div class="relative border border-white/40 rounded-xl p-8 mb-16 bg-[#1a1a1a] shadow-[0_0_20px_rgba(255,255,255,0.1)]">
         <!-- top stripes -->
         <div class="absolute -top-3 left-6 w-28 h-4 bg-white/90 -skew-x-12"></div>
 
         <h2 class="text-3xl font-bold mb-6 text-glow">USER INFORMATION</h2>
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg">
             <p><span class="text-blue-400">Username:</span> <?= esc($user['username']) ?></p>
             <p><span class="text-blue-400">Name:</span> <?= esc($user['firstname']) . ' ' . esc($user['lastname']) ?></p>
@@ -74,17 +73,28 @@ $user = $session->get('user'); // null if not logged in
 
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
             <?php foreach ($boards as $board): ?>
-            <div class="relative bg-black/50 border border-white/20 p-6 rounded-xl shadow-xl hover:scale-[1.03] transition duration-300">
+            <div class="relative bg-[#1a1a1a] border border-white/20 p-6 rounded-xl shadow-xl hover:scale-[1.03] transition duration-300">
+                <!-- FontAwesome folder icon -->
+                <div class="text-4xl text-yellow-400 mb-4">
+                    <i class="fa-solid fa-folder"></i>
+                </div>
 
-                <h3 class="text-2xl font-bold text-white"><?= esc($board['name']) ?></h3>
-                <p class="text-gray-300 mt-2"><?= esc($board['description']) ?></p>
+                <h3 class="text-2xl font-bold text-white"><?= esc($board->name) ?></h3>
+                <p class="text-gray-300 mt-2"><?= esc($board->description) ?></p>
+                <p class="text-sm text-gray-500 mt-4">Created: <?= esc($board->created_at) ?></p>
 
-                <p class="text-sm text-gray-500 mt-4">Created: <?= esc($board['created_at']) ?></p>
-
-                <!-- Decorative mini line -->
                 <div class="absolute bottom-0 left-0 right-0 h-px bg-white/20"></div>
             </div>
             <?php endforeach; ?>
+
+            <!-- ADD BOARD CARD -->
+            <div class="flex flex-col items-center justify-center border-2 border-dotted border-white/40 bg-[#1a1a1a] rounded-xl p-6 cursor-pointer hover:border-pink-400 transition duration-300">
+                <div class="text-5xl text-pink-400 mb-4">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">Add New Board</h3>
+                <p class="text-gray-400 mt-2 text-center">Click to create a new board for your favorite games</p>
+            </div>
         </div>
     </div>
 
@@ -96,26 +106,25 @@ $user = $session->get('user'); // null if not logged in
 
         <?php foreach ($boards as $board): ?>
         <div class="mb-12">
-            <h3 class="text-2xl font-bold mb-4"><?= esc($board['name']) ?> — <span class="text-blue-400">Games</span></h3>
+            <h3 class="text-2xl font-bold mb-4"><?= esc($board->name) ?> — <span class="text-blue-400">Games</span></h3>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <?php if (!empty($gamesByBoardId[$board['id']])): ?>
-                    <?php foreach ($gamesByBoardId[$board['id']] as $game): ?>
-                    <div class="bg-black/60 border border-white/10 rounded-xl p-6 shadow-lg hover:scale-105 transition">
-
-                        <div class="h-40 w-full bg-gray-800 rounded-md mb-4 flex items-center justify-center">
-                            <span class="text-gray-400">NO IMAGE</span>
+                <?php if (!empty($gamesByBoardId[$board->id])): ?>
+                    <?php foreach ($gamesByBoardId[$board->id] as $game): ?>
+                    <div class="bg-black/60 border border-white/10 rounded-xl p-4 shadow-lg hover:scale-105 transition flex flex-col items-center">
+                        
+                        <!-- Game Image -->
+                        <div class="h-40 w-full bg-gray-800 rounded-md mb-4 flex items-center justify-center overflow-hidden">
+                            <?php if (!empty($game->image)): ?>
+                                <img src="<?= esc($game->image) ?>" alt="<?= esc($game->name) ?>" class="h-full w-full object-cover">
+                            <?php else: ?>
+                                <span class="text-gray-400">NO IMAGE</span>
+                            <?php endif; ?>
                         </div>
 
-                        <h4 class="text-xl font-bold text-white"><?= esc($game['name']) ?></h4>
-
-                        <p class="text-gray-300 text-sm mt-1"><?= esc($game['description']) ?></p>
-
-                        <div class="flex justify-between text-sm text-gray-400 mt-3">
-                            <span>Genre: <?= esc($game['genre']) ?></span>
-                            <span>Platform: <?= esc($game['platform']) ?></span>
-                        </div>
-
+                        <!-- Game Name + Subtitle -->
+                        <h4 class="text-xl font-bold text-white"><?= esc($game->name) ?></h4>
+                        <p class="text-gray-300 text-sm mt-1"><?= esc($board->description) ?></p>
                     </div>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -124,7 +133,6 @@ $user = $session->get('user'); // null if not logged in
             </div>
         </div>
         <?php endforeach; ?>
-
     </div>
 
 </div>

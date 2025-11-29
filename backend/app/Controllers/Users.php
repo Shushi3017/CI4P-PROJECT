@@ -140,19 +140,19 @@ public function authenticate()
 
     // 2. Get games per board
     $gamesByBoardId = [];
+foreach ($boards as $board) {
+    $gameIds = $boardDetailModel
+        ->where('board_id', $board->id) // <- use ->id
+        ->findColumn('game_id') ?? [];
 
-    foreach ($boards as $board) {
-        $gameIds = $boardDetailModel
-            ->where('board_id', $board['id'])
-            ->findColumn('game_id') ?? [];
-
-        if (!empty($gameIds)) {
-            $gamesByBoardId[$board['id']] = 
-                $gameModel->whereIn('id', $gameIds)->findAll();
-        } else {
-            $gamesByBoardId[$board['id']] = [];
-        }
+    if (!empty($gameIds)) {
+        $gamesByBoardId[$board->id] = 
+            $gameModel->whereIn('id', $gameIds)->findAll();
+    } else {
+        $gamesByBoardId[$board->id] = [];
     }
+}
+
 
     // Pass everything to the view
     return view('user/accountprofile', [
