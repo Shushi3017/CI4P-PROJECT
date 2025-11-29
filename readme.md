@@ -5,7 +5,8 @@
 
 <div align="center">
   <a href="https://github.com/Shushi3017">
-    <img src="./backend/public/iron_ju.gif" alt="Iron Jugulist" width="130" height="100">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQppYFOWPhHZFqj-eWUYA9g_9Q3EBVMF04nDA&s" width="130"><br>
+    <img src="https://file.garden/ZrIPgCGn9kADc89z/skydriftlogo.png" alt="Iron Jugulis" width="130" height="100">
   </a>
 <!-- * Title Section -->
   <h3 align="center">AD-CI4-PROJECT-FINALS</h3>
@@ -13,7 +14,7 @@
 
 <!-- * Description Section -->
 <div align="center">
-A concise, beginner-friendly CodeIgniter 4 starter to quickly bootstrap backend and frontend projects. Includes sample modules (Auth, CRUD, Scheduler), Docker tooling, and clear conventions for file structure, commits, and testing.
+Skydrift Gameverse is a website where you can put your games into your personal boards. It is essentially a Pinterest but for games and heavily takes inspiration from said website. This project uses a concise, beginner-friendly CodeIgniter 4 starter to quickly bootstrap backend and frontend projects. Includes sample modules (Auth, CRUD, Scheduler), Docker tooling, and clear conventions for file structure, commits, and testing.
 </div>
 
 <br/>
@@ -53,23 +54,31 @@ A concise, beginner-friendly CodeIgniter 4 starter to quickly bootstrap backend 
 ---
 
 ## Overview
+This project is a CodeIgniter 4 web application designed as a small game-catalog and board management system with user accounts, permissions, and an admin dashboard.
 
-This template provides a **minimal CodeIgniter 4 project layout** with conventions for file organization, commit practices, and simple modules.
+It provides a clean CI4 structure with organized modules and serves as a reference for handling users, boards, and game listings.
 
-It is designed to be **easy to start with** and a **reference for adding new features**.
+### Purpose
+A simple but scalable template for managing users, game boards, and game entries with an admin-friendly interface.
 
-* **Purpose**: a clean starting point for CI4 apps.
-* **Audience**: developers who want a predictable structure and quick onboarding.
+### Audience
+Developers who want a straightforward CodeIgniter 4 implementation of:
+- user authentication
+- board/category management
+- game listings with images
+- admin-only controls
 
-### Key Components
+---
 
-These are **sample modules** included (or suggested) for learning how to add features:
+## Key Components
 
-| Component                 | Purpose                                                             | Notes                                                   |
-| ------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
-| **Auth (Sample)**         | Basic login/logout and role check (admin/user).                     | Uses CI4 sessions + MySQL `users` table.                |
-| **CRUD Module**           | Example entity (`Posts` or `Tasks`) with create/read/update/delete. | Demonstrates Controller → Service → Repository pattern. |
-| **Scheduler (Sample)**    | Simple to-do list with due dates.                                   | Shows how to extend with new tables and services.       |
+| Component           | Purpose                                                         | Notes                                                                 |
+|---------------------|-----------------------------------------------------------------|-----------------------------------------------------------------------|
+| **Auth Module**     | Handles login, registration, and session-based authentication.  | Uses CI4 Sessions + MySQL `users` table. Includes user roles.         |
+| **Boards Module**   | Manages game boards/categories (e.g., RPG, Shooter, Indie).     | Each board belongs to a user (`user_id`). CRUD + Admin controls.      |
+| **Games Module**    | Stores individual games with titles, covers, and board mapping. | Includes image URL support + Tailwind UI cards.                       |
+| **Admin Dashboard** | Central place for managing users, boards, and game entries.     | Designed with Tailwind. Only visible to admin-level users.            |
+
 
  <!-- ! Start simple. Use these modules as **learning samples**; extend or replace them based on your project’s needs. -->
 
@@ -153,7 +162,7 @@ Defaults used in this project (host mapping):
 | Service     | Host port |
 |-------------|-----------:|
 | nginx (app) | 8017      |
-| phpMyAdmin  | 3065      |
+| phpMyAdmin  | 8018     |
 | MySQL       | 3317      |
 
 Database credentials used in examples and CI:
@@ -212,13 +221,21 @@ AD-ProjectName/
 
 ## Resources
 
-| Title                   | Purpose                                                               | Link                                                                       |
-| ----------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| ChatGPT                 | General AI assistance for planning application architecture and docs. | [https://chat.openai.com](https://chat.openai.com)                         |
-| GitHub Copilot          | In-IDE code suggestions and boilerplate generation.                   | [https://github.com/features/copilot](https://github.com/features/copilot) |
-| YouTube “UI/UX Design”  | Video tutorials on modern web interface layouts and patterns.         | [https://www.youtube.com](https://www.youtube.com)                         |
-| Pinterest Design Boards | Inspiration for color schemes, typography, and component layouts.     | [https://www.pinterest.com](https://www.pinterest.com)                     |
-| Google Photos (Assets)  | Stock imagery and graphics used in UI mockups and documentation.      | [https://photos.google.com](https://photos.google.com)                     |
-| System Documentation    | Internal docs from PHP, MongoDB, and PostgreSQL used in development.  | — (see `/docs` folder in repo)                                             |
-
+| Title                      | Purpose                                                                   | Link                                                                           |
+| -------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Figma                      | UI mockups, wireframes, layout planning, and component design.            | https://www.figma.com/site/EofnuqdOVWUoQ3vDhS2oz3/Jugulis-Gameverse?node-id=0-1&t=20f4iWO7Ij1vL2lW-1                                                      |
+| Pinterest Design Boards    | Inspiration for color palettes, UI themes, and interaction patterns.       | https://www.pinterest.com                                                       |
+| ChatGPT                   | Assistance for debugging, documentation writing, architecture planning.   | https://chat.openai.com                                                         |
+| GitHub Copilot             | In-editor code suggestions and boilerplate generation.                     | https://github.com/features/copilot                                             |
+| YouTube UI/UX Tutorials    | Guides for building modern layouts and animations.                         | https://www.youtube.com                                                         |
+| Google Images / Photos     | Reference images and assets used for UI mockups.                           | https://photos.google.com                                                       |
+| System Documentation       | Official docs for PHP, MySQL, Tailwind, and CodeIgniter.                   | *(See `/docs` folder in repo.)*                                                |
+| File Garden       | Image File Hosting                   | https://filegarden.com/                                             |
+| Stack Overflow      | Help and Reference with Code and Database Design                   | https://stackoverflow.com/questions/49250955/better-way-to-make-the-shopping-cart-table-with-mysql                                             |
+| DEV Community       | Database design reference               | https://dev.to/ezzdinatef/ecommerce-database-design-1ggc   |
 <!-- ! Add what tools aided you -->
+
+## Additional Notes:
+If the database seeders are not seeding correctly, please seed in this order
+**_UsersSeeder -> GamesSeeder -> BoardsSeeder -> BoardDetailsSeeder_**
+and make sure that all of the tables have been dropped and you have a fresh migration before doing so.
