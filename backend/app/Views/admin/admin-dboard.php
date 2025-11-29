@@ -287,31 +287,36 @@
         }
 
         function saveAddUser() {
-            let username = document.getElementById('addUserUsername').value;
-            let firstname = document.getElementById('addUserFirstName').value;
-            let lastname = document.getElementById('addUserLastName').value;
-            let email = document.getElementById('addUserEmail').value;
+            let username = document.getElementById('addUserUsername').value.trim();
+            let firstname = document.getElementById('addUserFirstName').value.trim();
+            let lastname = document.getElementById('addUserLastName').value.trim();
+            let email = document.getElementById('addUserEmail').value.trim();
             let password = document.getElementById('addUserPassword').value;
             let role = document.getElementById('addUserRole').value;
             let age = document.getElementById('addUserAge').value;
 
-            body: `addUserName=${encodeURIComponent(username)}&addUserFirstName=${encodeURIComponent(firstname)}&addUserLastName=${encodeURIComponent(lastname)}&addUserEmail=${encodeURIComponent(email)}&addUserPassword=${encodeURIComponent(password)}&addUserRole=${encodeURIComponent(role)}&addUserAge=${encodeURIComponent(age)}`
+            // Client-side validation
+            if (!username || !email || !password || !role) {
+                document.getElementById('addUserMessage').innerHTML =
+                    "<span class='text-red-400 font-bold'>Please fill in all required fields: Username, Email, Password, Role.</span>";
+                return;
+            }
+
+            let body = `addUserName=${encodeURIComponent(username)}&addUserFirstName=${encodeURIComponent(firstname)}&addUserLastName=${encodeURIComponent(lastname)}&addUserEmail=${encodeURIComponent(email)}&addUserPassword=${encodeURIComponent(password)}&addUserRole=${encodeURIComponent(role)}&addUserAge=${encodeURIComponent(age)}`;
 
             fetch("/admin/addUser", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
                     },
-                    body: `addUserName=${encodeURIComponent(username)}&addUserFirstName=${encodeURIComponent(firstname)}&addUserLastName=${encodeURIComponent(lastname)}&addUserEmail=${encodeURIComponent(email)}&addUserPassword=${encodeURIComponent(password)}&addUserRole=${encodeURIComponent(role)}`
+                    body: body
                 })
                 .then(res => res.json())
                 .then(data => {
                     if (data.status === "success") {
                         document.getElementById('addUserMessage').innerHTML =
                             "<span class='text-green-400 font-bold'>User added successfully!</span>";
-                        setTimeout(() => {
-                            location.reload();
-                        }, 1000);
+                        setTimeout(() => location.reload(), 1000);
                     } else {
                         document.getElementById('addUserMessage').innerHTML =
                             "<span class='text-red-400 font-bold'>" + (data.message || 'Failed to add user') + "</span>";
