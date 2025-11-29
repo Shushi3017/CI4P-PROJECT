@@ -13,7 +13,7 @@ $e = function ($s) {
 
 
 
-<footer class="w-full bg-black border-t border-gray-800 pt-16 pb-10 z-20 mt-5 relative">
+<footer class="w-full bg-black border-t border-gray-800 pt-16 pb-10 z-20 relative">
     <div class="max-w-5xl mx-auto px-4 md:px-8">
 
         <!-- Link Grid: Adjusted to lg:grid-cols-6 (2 for Brand, 4 for Links) -->

@@ -36,7 +36,7 @@ $user = $session->get('user'); // null if not logged in
     </style>
 </head>
 
-<body class="tech-bg min-h-screen">
+<body class="min-h-screen">
 <?= view('components/header') ?>
 
 <!-- HEADER TITLE -->

@@ -66,21 +66,53 @@ $user = $session->get('user'); // null if not logged in
     </script>
     <style>
     /* Custom Font for the Tech/Gaming look */
-    body {
-        font-family: 'Rajdhani', sans-serif;
-        background-color: #0a0a0a;
-        color: white;
-        overflow-x: hidden;
-    }
+body {
+    font-family: 'Rajdhani', sans-serif;
+    position: relative;
+    min-height: 100vh;
 
-    /* Tech Background Grid */
-    .tech-bg {
-        background-image:
-            linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-            linear-gradient(90deg, rgba(50, 50, 50, 0.5) 1px, transparent 1px),
-            linear-gradient(rgba(50, 50, 50, 0.5) 1px, transparent 1px);
-        background-size: 100% 100%, 40px 40px, 40px 40px;
-    }
+    /* Base layers: clouds + grid lines */
+    background-image:
+        url("https://file.garden/ZrIPgCGn9kADc89z/gifgit.gif"),          /* clouds */
+        linear-gradient(90deg, rgba(50, 50, 50, 0.5) 1px, transparent 1px), /* vertical grid */
+        linear-gradient(rgba(50, 50, 50, 0.5) 1px, transparent 1px);       /* horizontal grid */
+
+    background-size:
+        cover,      /* clouds */
+        40px 40px,  /* vertical grid */
+        40px 40px;  /* horizontal grid */
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Glitch overlay with screen blend mode */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("https://i.pinimg.com/originals/80/5a/ec/805aecf07080d735a863dd4cb2d62fa7.gif") center/cover repeat;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+/* Dark overlay + vignette */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: 
+        linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), /* top dark overlay */
+        radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7) 100%); /* smooth vignette */
+    background-blend-mode: multiply;
+}
+
+
 
     /* Side Tech Borders (Desktop Only) */
     .tech-sidebar-left {
@@ -220,7 +252,7 @@ $user = $session->get('user'); // null if not logged in
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col tech-bg text-gray-100 relative">
+<body class="min-h-screen flex flex-col text-gray-100 relative">
 
     <!-- Fixed Tech Sidebars (Hidden on Mobile) -->
     <div

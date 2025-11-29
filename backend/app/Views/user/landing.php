@@ -22,15 +22,6 @@ $user = $session->get('user'); // null if not logged in
             overflow-x: hidden;
         }
 
-        /* Tech Background Grid */
-        .tech-bg {
-            background-image:
-                linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-                linear-gradient(90deg, rgba(50, 50, 50, 0.5) 1px, transparent 1px),
-                linear-gradient(rgba(50, 50, 50, 0.5) 1px, transparent 1px);
-            background-size: 100% 100%, 40px 40px, 40px 40px;
-        }
-
         /* Side Tech Borders (Desktop Only) */
         .tech-sidebar-left {
             clip-path: polygon(0 0, 100% 0, 100% 10%, 80% 15%, 80% 85%, 100% 90%, 100% 100%, 0 100%);
@@ -141,20 +132,12 @@ $user = $session->get('user'); // null if not logged in
         }
     </style> copy-->
     <style>
-    /* Custom Font for the Tech/Gaming look */
-    body {
-        font-family: 'Rajdhani', sans-serif;
-        background-color: #0a0a0a;
-        color: white;
-        overflow-x: hidden;
-    }
-
     /* Tech Background Grid */
     .tech-bg {
         background-image:
-            linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-            linear-gradient(90deg, rgba(50, 50, 50, 0.5) 1px, transparent 1px),
-            linear-gradient(rgba(50, 50, 50, 0.5) 1px, transparent 1px);
+            linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            linear-gradient(90deg, rgba(50, 50, 50, 0.4) 1px, transparent 1px),
+            linear-gradient(rgba(50, 50, 50, 0.4) 1px, transparent 1px) !important;
         background-size: 100% 100%, 40px 40px, 40px 40px;
     }
 
@@ -170,8 +153,8 @@ $user = $session->get('user'); // null if not logged in
     /* Stripes Decoration */
     .stripes {
         background: repeating-linear-gradient(-45deg,
-                #ffffff,
-                #ffffff 5px,
+                rgba(255, 255, 255, 0),
+                rgba(255, 255, 255, 0) 5px,
                 transparent 5px,
                 transparent 10px);
         opacity: 0.8;
@@ -270,7 +253,7 @@ $user = $session->get('user'); // null if not logged in
 
 </head>
 
-<body class="min-h-screen flex flex-col tech-bg text-gray-100 relative">
+<body class="min-h-screen flex flex-col text-gray-100 relative">
     <?= view('components/header') ?>
 
 
@@ -469,9 +452,7 @@ $user = $session->get('user'); // null if not logged in
 
     <?php endif; ?>
     </div>
-
-    <br>
-    <div class="relative z-10 max-w-4xl mx-auto">
+<div class="relative z-10 w-full bg-[#ec4899] h-[70vh] flex flex-col items-center justify-center text-center px-4">
         <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 drop-shadow-md tracking-tight">
             Organize your game collection now!
         </h2>
