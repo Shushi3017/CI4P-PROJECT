@@ -8,11 +8,12 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Users::index');
 $routes->get('/roadmap', 'Users::roadmap');
 $routes->post('authenticate', 'Users::authenticate');
-$routes->get('/login', 'Users::login');
-$routes->post('/login', 'Users::authenticate');
-$routes->get('/signup', 'Users::signup');
-$routes->post('/signup', 'Users::register'); 
-$routes->get('/logout', 'Users::logout'); 
+$routes->get('/signup', 'Users::signup');          // Signup form
+$routes->post('/signup', 'Users::register');       // Handle signup POST
+$routes->get('/login', 'Users::login');           // Login form
+$routes->post('/login', 'Users::authenticate');   // Handle login POST
+$routes->get('/logout', 'Users::logout');         // Logout action
+
 
 $routes->get('/admin-dashboard', 'Admin::index');
 // Admin Dashboard
