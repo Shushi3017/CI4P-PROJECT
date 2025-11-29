@@ -1,4 +1,4 @@
- <section class="w-full py-20 px-4 md:px-24 flex justify-center z-10">
+ <section class="w-full h-[100vh]  py-20 px-4 md:px-24 flex justify-center z-10 bg-[#0a0a0a] mt-3">
      <div class="w-full max-w-6xl">
          <!-- Title and Description (Based on provided images) -->
          <div class="text-center mb-12">
@@ -48,7 +48,7 @@
          </div>
      </div>
  </section>
- <div class="w-full bg-cta-gradient py-20 px-6 text-center relative overflow-hidden" role="region" aria-label="Call to action">
+ <div class="w-full bg-[#0a0a0a] bg-cta-gradient py-20 px-6 text-center relative overflow-hidden" role="region" aria-label="Call to action">
      <!-- Decorative Background Elements -->
      <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20" aria-hidden="true">
          <div class="absolute -top-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl mix-blend-overlay"></div>

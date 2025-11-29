@@ -97,6 +97,8 @@ public function authenticate()
         'firstname' => $user->firstname,
         'lastname' => $user->lastname,
         'type' => $user->type,
+        'status' => $user->status,
+        'age' => $user->age
     ]);
 
     return redirect()->to('/'); // landing page for regular users
@@ -118,4 +120,46 @@ public function authenticate()
     {
         return view('user/moodboard');
     }
+
+    public function profile()
+{
+    $session = session();
+    $user = $session->get('user');
+
+    if (!$user) {
+        return redirect()->to('/login');
+    }
+
+    // Load models
+    $boardModel = new \App\Models\BoardModel();
+    $boardDetailModel = new \App\Models\BoardDetailModel();
+    $gameModel = new \App\Models\GameModel();
+
+    // 1. Get user's boards
+    $boards = $boardModel->where('user_id', $user['id'])->findAll();
+
+    // 2. Get games per board
+    $gamesByBoardId = [];
+foreach ($boards as $board) {
+    $gameIds = $boardDetailModel
+        ->where('board_id', $board->id) // <- use ->id
+        ->findColumn('game_id') ?? [];
+
+    if (!empty($gameIds)) {
+        $gamesByBoardId[$board->id] = 
+            $gameModel->whereIn('id', $gameIds)->findAll();
+    } else {
+        $gamesByBoardId[$board->id] = [];
+    }
+}
+
+
+    // Pass everything to the view
+    return view('user/accountprofile', [
+        'user' => $user,
+        'boards' => $boards,
+        'gamesByBoardId' => $gamesByBoardId
+    ]);
+}
+
 }

@@ -66,21 +66,53 @@ $user = $session->get('user'); // null if not logged in
     </script>
     <style>
     /* Custom Font for the Tech/Gaming look */
-    body {
-        font-family: 'Rajdhani', sans-serif;
-        background-color: #0a0a0a;
-        color: white;
-        overflow-x: hidden;
-    }
+body {
+    font-family: 'Rajdhani', sans-serif;
+    position: relative;
+    min-height: 100vh;
 
-    /* Tech Background Grid */
-    .tech-bg {
-        background-image:
-            linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-            linear-gradient(90deg, rgba(50, 50, 50, 0.5) 1px, transparent 1px),
-            linear-gradient(rgba(50, 50, 50, 0.5) 1px, transparent 1px);
-        background-size: 100% 100%, 40px 40px, 40px 40px;
-    }
+    /* Base layers: clouds + grid lines */
+    background-image:
+        url("https://file.garden/ZrIPgCGn9kADc89z/gifgit.gif"),          /* clouds */
+        linear-gradient(90deg, rgba(50, 50, 50, 0.5) 1px, transparent 1px), /* vertical grid */
+        linear-gradient(rgba(50, 50, 50, 0.5) 1px, transparent 1px);       /* horizontal grid */
+
+    background-size:
+        cover,      /* clouds */
+        40px 40px,  /* vertical grid */
+        40px 40px;  /* horizontal grid */
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Glitch overlay with screen blend mode */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("https://i.pinimg.com/originals/80/5a/ec/805aecf07080d735a863dd4cb2d62fa7.gif") center/cover repeat;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.2;
+}
+
+/* Dark overlay + vignette */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0,0,0,0.4)), /* top dark overlay */
+        radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7) 100%); /* smooth vignette */
+    background-blend-mode: multiply;
+}
+
+
 
     /* Side Tech Borders (Desktop Only) */
     .tech-sidebar-left {
@@ -220,7 +252,7 @@ $user = $session->get('user'); // null if not logged in
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col tech-bg text-gray-100 relative">
+<body class="min-h-screen flex flex-col text-gray-100 relative">
 
     <!-- Fixed Tech Sidebars (Hidden on Mobile) -->
     <div
@@ -264,13 +296,9 @@ $user = $session->get('user'); // null if not logged in
                     <div
                         class="dropdown-menu hidden absolute top-full left-0 mt-0 w-48 bg-gray-900 border border-gray-700 shadow-xl rounded-sm overflow-hidden">
                         <a href="#rpg"
-                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">RPG
-                            Games</a>
+                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition"> Explore Boards</a>
                         <a href="#fps"
-                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">FPS
-                            Shooters</a>
-                        <a href="#strategy"
-                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">Strategy</a>
+                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition"> Make Board</a>
                     </div>
                 </div>
 
@@ -287,13 +315,10 @@ $user = $session->get('user'); // null if not logged in
                     </div>
                     <div
                         class="dropdown-menu hidden absolute top-full left-0 mt-0 w-48 bg-gray-900 border border-gray-700 shadow-xl rounded-sm overflow-hidden">
-                        <a href="#settings"
-                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">Settings</a>
-                        <a href="#profile"
-                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">Profile</a>
-                        <a href="#about"
-                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">About
-                            Us</a>
+                        <a href="/roadmap"
+                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">Roadmap</a>
+                        <a href="/moodboard"
+                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">Moodboard</a>
                     </div>
                 </div>
             </div>
@@ -307,27 +332,40 @@ $user = $session->get('user'); // null if not logged in
 
         <!-- RIGHT SECTION: User / Login -->
         <?php if ($user): ?>
-        <div class="relative group flex items-center cursor-pointer">
-            <a href="<?= base_url('/profile') ?>"
-                class="text-xl font-bold tracking-wider text-gray-300 hover:text-glow transition duration-300">
-                <?= esc($user['username']) ?>
+<div class="relative group flex items-center cursor-pointer">
+
+    <!-- Username -->
+    <div class="text-xl font-bold tracking-wider text-gray-300 group-hover:text-glow transition duration-300">
+        <a href="<?= base_url('/profile') ?>"><?= esc($user['username']) ?></a>
+    </div>
+
+    <!-- Hover Area Wrapper (IMPORTANT) -->
+    <div class="absolute right-0 top-full pt-2 hidden group-hover:block">
+        <div class="w-40 bg-gray-900 border border-gray-700 shadow-xl rounded-sm overflow-hidden text-sm">
+
+            <a href="<?= base_url('/settings') ?>"
+                class="block px-4 py-2 text-gray-300 hover:bg-blue-900/50 hover:text-white transition">
+                Settings
             </a>
 
-            <!-- Dropdown on hover -->
-            <div
-                class="dropdown-menu hidden absolute right-0 mt-2 w-40 bg-gray-900 border border-gray-700 shadow-xl rounded-sm overflow-hidden text-sm">
-                <a href="<?= base_url('/settings') ?>"
-                    class="block px-4 py-2 text-gray-300 hover:bg-blue-900/50 hover:text-white transition">Settings</a>
-                <a href="<?= base_url('/logout') ?>"
-                    class="block px-4 py-2 text-gray-300 hover:bg-red-700/50 hover:text-white transition">Logout</a>
-            </div>
+            <a href="<?= base_url('/logout') ?>"
+                class="block px-4 py-2 text-gray-300 hover:bg-red-700/50 hover:text-white transition">
+                Logout
+            </a>
+
         </div>
-        <?php else: ?>
-        <a href="<?= base_url('login') ?>"
-            class="flex items-center gap-2 cursor-pointer hover:text-white text-gray-300 transition group">
-            <span class="text-xl font-bold tracking-wider group-hover:text-glow transition duration-300">LOGIN</span>
-        </a>
-        <?php endif; ?>
+    </div>
+
+</div>
+<?php else: ?>
+<a href="<?= base_url('login') ?>"
+    class="flex items-center gap-2 cursor-pointer hover:text-white text-gray-300 transition group">
+    <span class="text-xl font-bold tracking-wider group-hover:text-glow transition duration-300">
+        LOGIN
+    </span>
+</a>
+<?php endif; ?>
+
 
     </nav>
 
@@ -366,15 +404,7 @@ $user = $session->get('user'); // null if not logged in
                     <div class="flex flex-col py-2">
                         <a href="#rpg"
                             class="pl-12 pr-6 py-3 text-gray-400 hover:text-blue-400 hover:bg-black/20 transition-colors flex items-center gap-2 text-lg">
-                            <div class="w-1 h-1 bg-blue-500 rounded-full"></div> RPG Games
-                        </a>
-                        <a href="#fps"
-                            class="pl-12 pr-6 py-3 text-gray-400 hover:text-blue-400 hover:bg-black/20 transition-colors flex items-center gap-2 text-lg">
-                            <div class="w-1 h-1 bg-blue-500 rounded-full"></div> FPS Shooters
-                        </a>
-                        <a href="#strategy"
-                            class="pl-12 pr-6 py-3 text-gray-400 hover:text-blue-400 hover:bg-black/20 transition-colors flex items-center gap-2 text-lg">
-                            <div class="w-1 h-1 bg-blue-500 rounded-full"></div> Strategy
+                            <div class="w-1 h-1 bg-blue-500 rounded-full"></div> Make Board
                         </a>
                     </div>
                 </div>

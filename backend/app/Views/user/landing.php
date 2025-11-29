@@ -9,8 +9,9 @@ $user = $session->get('user'); // null if not logged in
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming Dashboard Template</title>
+    <title>SKYDRIFT GAMEVERSE</title>
     <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="icon" type="image/x-icon" href="<?= base_url('favicon2.ico') ?>">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- <style>
         /* Custom Font for the Tech/Gaming look */
@@ -19,15 +20,6 @@ $user = $session->get('user'); // null if not logged in
             background-color: #0a0a0a;
             color: white;
             overflow-x: hidden;
-        }
-
-        /* Tech Background Grid */
-        .tech-bg {
-            background-image:
-                linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-                linear-gradient(90deg, rgba(50, 50, 50, 0.5) 1px, transparent 1px),
-                linear-gradient(rgba(50, 50, 50, 0.5) 1px, transparent 1px);
-            background-size: 100% 100%, 40px 40px, 40px 40px;
         }
 
         /* Side Tech Borders (Desktop Only) */
@@ -140,20 +132,12 @@ $user = $session->get('user'); // null if not logged in
         }
     </style> copy-->
     <style>
-    /* Custom Font for the Tech/Gaming look */
-    body {
-        font-family: 'Rajdhani', sans-serif;
-        background-color: #0a0a0a;
-        color: white;
-        overflow-x: hidden;
-    }
-
     /* Tech Background Grid */
     .tech-bg {
         background-image:
-            linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-            linear-gradient(90deg, rgba(50, 50, 50, 0.5) 1px, transparent 1px),
-            linear-gradient(rgba(50, 50, 50, 0.5) 1px, transparent 1px);
+            linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            linear-gradient(90deg, rgba(50, 50, 50, 0.4) 1px, transparent 1px),
+            linear-gradient(rgba(50, 50, 50, 0.4) 1px, transparent 1px) !important;
         background-size: 100% 100%, 40px 40px, 40px 40px;
     }
 
@@ -169,8 +153,8 @@ $user = $session->get('user'); // null if not logged in
     /* Stripes Decoration */
     .stripes {
         background: repeating-linear-gradient(-45deg,
-                #ffffff,
-                #ffffff 5px,
+                rgba(255, 255, 255, 0),
+                rgba(255, 255, 255, 0) 5px,
                 transparent 5px,
                 transparent 10px);
         opacity: 0.8;
@@ -269,7 +253,7 @@ $user = $session->get('user'); // null if not logged in
 
 </head>
 
-<body class="min-h-screen flex flex-col tech-bg text-gray-100 relative">
+<body class="min-h-screen flex flex-col text-gray-100 relative">
     <?= view('components/header') ?>
 
 
@@ -468,27 +452,26 @@ $user = $session->get('user'); // null if not logged in
 
     <?php endif; ?>
     </div>
-
-    <br>
-    <div class="relative z-10 max-w-4xl mx-auto">
+<div class="relative z-10 w-full bg-[#ec4899] h-[70vh] flex flex-col items-center justify-center text-center px-4">
         <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 drop-shadow-md tracking-tight">
             Organize your game collection now!
         </h2>
         <p class="text-indigo-100 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
             Stop losing track of your backlog. Create lists, rate titles, and share your gaming journey.
         </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-5">
-            <a href="#signup"
-                class="inline-block bg-white text-brand-accent text-indigo-500 font-bold py-3.5 px-10 rounded-full shadow-xl hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
-                role="button">
-                Get Started Free
-            </a>
-            <a href="#features"
-                class="inline-block bg-black/20 text-white border border-white/30 font-bold py-3.5 px-10 rounded-full hover:bg-black/40 hover:scale-105 transition-all duration-300 backdrop-blur-sm"
-                role="button">
-                View Features
-            </a>
-        </div>
+       <div class="flex flex-col sm:flex-row justify-center gap-5">
+    <a href="<?= $user ? base_url('make-board.php') : base_url('signup') ?>"
+       class="inline-block bg-white text-brand-accent text-indigo-500 font-bold py-3.5 px-10 rounded-full shadow-xl hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
+       role="button">
+        Get Started
+    </a>
+    <a href="/roadmap"
+       class="inline-block bg-black/20 text-white border border-white/30 font-bold py-3.5 px-10 rounded-full hover:bg-black/40 hover:scale-105 transition-all duration-300 backdrop-blur-sm"
+       role="button">
+        View Roadmap
+    </a>
+</div>
+
     </div>
     </div>
 
