@@ -159,10 +159,11 @@ $user = $session->get('user'); // null if not logged in
                                     <p class="text-gray-300 text-sm mt-1"><?= esc($board->description) ?></p>
 
                                     <!-- Delete Button -->
-                                    <button onclick="openDeleteModal('game', <?= $game->id ?>, '<?= esc($game->name) ?>')"
+                                    <button onclick="openDeleteModal('game', <?= $game->id ?>, <?= $board->id ?>, '<?= esc($game->name) ?>')"
                                         class="mt-4 inline-block bg-red-500 hover:bg-red-600 text-black font-bold py-2 px-4 rounded-full transition-all duration-300">
                                         Delete
                                     </button>
+
                                 </div>
                             <?php endforeach; ?>
 
@@ -267,20 +268,25 @@ $user = $session->get('user'); // null if not logged in
         </div>
     </div>
     <script>
-        let deleteType, deleteId;
+        let deleteType, deleteId, deleteBoardId;
 
-        function openDeleteModal(type, id, name) {
-            deleteType = type;
-            deleteId = id;
+        function openDeleteModal(type, id, boardIdOrName, name) {
             const modal = document.getElementById('deleteModal');
             const text = document.getElementById('deleteModalText');
-            text.innerText = `Are you sure you want to delete this ${type}: "${name}"?`;
-
             const form = document.getElementById('deleteForm');
+
+            deleteType = type;
+
             if (type === 'board') {
-                form.action = `/boards/delete/${id}`;
-            } else if (type === 'game') {
-                form.action = `/games/delete/${id}`;
+                deleteId = id; // board ID
+                text.innerText = `Are you sure you want to delete this board: "${boardIdOrName}"?`;
+                form.action = `/boards/delete/${deleteId}`;
+            } 
+            else if (type === 'game') {
+                deleteId = id; // game ID
+                deleteBoardId = boardIdOrName; // board ID
+                text.innerText = `Are you sure you want to delete this game: "${name}"?`;
+                form.action = `/games/delete/${deleteId}?board_id=${deleteBoardId}`;
             }
 
             modal.classList.remove('hidden');

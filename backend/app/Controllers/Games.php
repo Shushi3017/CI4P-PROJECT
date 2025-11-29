@@ -71,4 +71,44 @@ class Games extends BaseController
 
         return $this->response->setJSON(['status' => 'success']);
     }
+
+public function delete($game_id)
+{
+    $session = session();
+    $user = $session->get('user');
+
+    if (!$user) {
+        return redirect()->to('/login');
+    }
+
+    $board_id = $this->request->getGet('board_id');
+
+    if (!$board_id) {
+        return redirect()->back()->with('error', 'Board ID missing.');
+    }
+
+    $boardModel = new BoardModel();
+    $board = $boardModel->where('id', $board_id)
+                        ->where('user_id', $user->id)
+                        ->first();
+
+    if (!$board) {
+        return redirect()->back()->with('error', 'Board not found or not authorized.');
+    }
+
+    $boardDetailModel = new BoardDetailModel();
+    $exists = $boardDetailModel
+        ->where('board_id', $board_id)
+        ->where('game_id', $game_id)
+        ->first();
+
+    if (!$exists) {
+        return redirect()->back()->with('error', 'Game not found on this board.');
+    }
+    $boardDetailModel->delete($exists->id ?? $exists['id']);
+
+    return redirect()->back()->with('success', 'Game deleted successfully.');
+}
+
+
 }
