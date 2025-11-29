@@ -12,6 +12,8 @@ class Admin extends BaseController
     protected $boardModel;
     protected $gameModel;
 
+
+
     public function __construct()
     {
         $this->userModel = new UserModel();
@@ -19,14 +21,37 @@ class Admin extends BaseController
         $this->gameModel = new GameModel();
     }
 
+    private function checkAdmin()
+    {
+        $session = session();
+        $user = $session->get('user');
+
+        // Not logged in = redirect
+        if (!$user) {
+            return redirect()->to('/');
+        }
+
+        // Logged in but NOT admin = show custom error page
+        if ($user->type !== 'admin') {
+            return view('errors/error404');
+        }
+
+        return null;
+    }
+
+
     // Make users() the default method
     public function index()
     {
+        if ($resp = $this->checkAdmin()) return $resp;
+
         return $this->users();
     }
 
     public function users()
     {
+        if ($resp = $this->checkAdmin()) return $resp;
+
         $search = $this->request->getGet('search');
         $users = $search
             ? $this->userModel->like('username', $search)->orLike('email', $search)->findAll()
@@ -47,6 +72,8 @@ class Admin extends BaseController
 
     public function addUser()
     {
+        if ($resp = $this->checkAdmin()) return $resp;
+
         $data = $this->request->getPost();
         $this->userModel->insert([
             'username' => $data['addUserName'],
@@ -64,6 +91,8 @@ class Admin extends BaseController
 
     public function editUser($id)
     {
+        if ($resp = $this->checkAdmin()) return $resp;
+
         $data = $this->request->getPost();
         $updateData = [
             'username' => $data['editUserUsername'],
@@ -86,11 +115,15 @@ class Admin extends BaseController
 
     public function deleteUser($id)
     {
+        if ($resp = $this->checkAdmin()) return $resp;
+
         $this->userModel->delete($id);
         return redirect()->to('/admin');
     }
     public function getUserById()
     {
+        if ($resp = $this->checkAdmin()) return $resp;
+
         $id = $this->request->getGet('id');
         if (!$id) {
             return $this->response->setStatusCode(400)->setJSON(['error' => 'User ID required']);
@@ -108,6 +141,8 @@ class Admin extends BaseController
     // Show games dashboard
     public function games()
     {
+        if ($resp = $this->checkAdmin()) return $resp;
+
         $games = $this->gameModel->findAll();
 
         echo view('admin/admingame-dboard', [
@@ -117,6 +152,8 @@ class Admin extends BaseController
 
     public function addGame()
     {
+        if ($resp = $this->checkAdmin()) return $resp;
+
         $data = $this->request->getPost();
         $this->gameModel->insert([
             'name'         => $data['addGameName'],
@@ -132,6 +169,8 @@ class Admin extends BaseController
 
     public function editGame($id)
     {
+        if ($resp = $this->checkAdmin()) return $resp;
+
         $data = $this->request->getPost();
         $this->gameModel->update($id, [
             'name'         => $data['editGameName'],
@@ -147,12 +186,16 @@ class Admin extends BaseController
 
     public function deleteGame($id)
     {
+        if ($resp = $this->checkAdmin()) return $resp;
+
         $this->gameModel->delete($id);
         return $this->response->setJSON(['status' => 'success']);
     }
 
     public function getGameById()
     {
+        if ($resp = $this->checkAdmin()) return $resp;
+
         $id = $this->request->getGet('id');
         if (!$id) return $this->response->setJSON(['error' => 'Game ID required']);
 
