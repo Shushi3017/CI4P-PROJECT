@@ -14,7 +14,7 @@
 
 <!-- * Description Section -->
 <div align="center">
-Skydrift Gameverse is a website where you can put your games into your personal boards. It is esentially a Pinterest but for games and heavily takes inspiration from said website. This project uses a concise, beginner-friendly CodeIgniter 4 starter to quickly bootstrap backend and frontend projects. Includes sample modules (Auth, CRUD, Scheduler), Docker tooling, and clear conventions for file structure, commits, and testing.
+Skydrift Gameverse is a website where you can put your games into your personal boards. It is essentially a Pinterest but for games and heavily takes inspiration from said website. This project uses a concise, beginner-friendly CodeIgniter 4 starter to quickly bootstrap backend and frontend projects. Includes sample modules (Auth, CRUD, Scheduler), Docker tooling, and clear conventions for file structure, commits, and testing.
 </div>
 
 <br/>
@@ -162,7 +162,7 @@ Defaults used in this project (host mapping):
 | Service     | Host port |
 |-------------|-----------:|
 | nginx (app) | 8017      |
-| phpMyAdmin  | 3065      |
+| phpMyAdmin  | 8018     |
 | MySQL       | 3317      |
 
 Database credentials used in examples and CI:
@@ -220,7 +220,6 @@ AD-ProjectName/
 ---
 
 ## Resources
-## Resources
 
 | Title                      | Purpose                                                                   | Link                                                                           |
 | -------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -235,3 +234,8 @@ AD-ProjectName/
 | Stack Overflow      | Help and Reference with Code and Database Design                   | https://stackoverflow.com/questions/49250955/better-way-to-make-the-shopping-cart-table-with-mysql                                             |
 | DEV Community       | Database design reference               | https://dev.to/ezzdinatef/ecommerce-database-design-1ggc   |
 <!-- ! Add what tools aided you -->
+
+## Additional Notes:
+If the database seeders are not seeding correctly, please seed in this order
+**_UsersSeeder -> GamesSeeder -> BoardsSeeder -> BoardDetailsSeeder_**
+and make sure that all of the tables have been dropped and you have a fresh migration before doing so.
