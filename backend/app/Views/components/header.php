@@ -343,11 +343,6 @@ body::after {
     <div class="absolute right-0 top-full pt-2 hidden group-hover:block">
         <div class="w-40 bg-gray-900 border border-gray-700 shadow-xl rounded-sm overflow-hidden text-sm">
 
-            <a href="<?= base_url('/settings') ?>"
-                class="block px-4 py-2 text-gray-300 hover:bg-blue-900/50 hover:text-white transition">
-                Settings
-            </a>
-
             <a href="<?= base_url('/logout') ?>"
                 class="block px-4 py-2 text-gray-300 hover:bg-red-700/50 hover:text-white transition">
                 Logout
