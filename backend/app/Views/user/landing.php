@@ -326,7 +326,7 @@ $user = $session->get('user'); // null if not logged in
 
                     <div class="pt-8">
                         <?php if ($user): ?>
-                        <a href="make-board.php"
+                        <a href="/make-board"
                             class="bg-pink-500 hover:bg-pink-600 text-black font-bold text-lg px-10 py-4 rounded-full flex items-center gap-3 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-pink-500/50">
                             <span class="w-4 h-4 bg-black rounded-full"></span>
                             MAKE BOARD
@@ -460,7 +460,7 @@ $user = $session->get('user'); // null if not logged in
             Stop losing track of your backlog. Create lists, rate titles, and share your gaming journey.
         </p>
        <div class="flex flex-col sm:flex-row justify-center gap-5">
-    <a href="<?= $user ? base_url('make-board.php') : base_url('signup') ?>"
+    <a href="<?= $user ? '/make-board' : base_url('signup') ?>"
        class="inline-block bg-white text-brand-accent text-indigo-500 font-bold py-3.5 px-10 rounded-full shadow-xl hover:bg-indigo-50 hover:scale-105 transition-all duration-300"
        role="button">
         Get Started
