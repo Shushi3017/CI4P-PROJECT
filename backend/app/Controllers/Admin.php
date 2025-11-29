@@ -71,23 +71,42 @@ class Admin extends BaseController
     }
 
     public function addUser()
-    {
-        if ($resp = $this->checkAdmin()) return $resp;
+{
+    if ($resp = $this->checkAdmin()) return $resp;
 
-        $data = $this->request->getPost();
-        $this->userModel->insert([
-            'username' => $data['addUserName'],
-            'email' => $data['addUserEmail'],
-            'firstname' => $data['addUserFirstName'] ?? '',
-            'lastname' => $data['addUserLastName'] ?? '',
-            'age' => $data['addUserAge'],      // <- added
-            'type' => $data['addUserRole'],
-            'status' => 'active',
-            'password' => password_hash($data['addUserPassword'] ?? '123456', PASSWORD_DEFAULT),
-        ]);
+    $data = $this->request->getPost();
 
-        return $this->response->setJSON(['status' => 'success']);
+    // Basic validation
+    $requiredFields = ['addUserName', 'addUserEmail', 'addUserPassword', 'addUserRole'];
+    foreach ($requiredFields as $field) {
+        if (empty($data[$field])) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => ucfirst($field) . ' is required'
+            ]);
+        }
     }
+
+    // Optional fields
+    $firstname = $data['addUserFirstName'] ?? '';
+    $lastname  = $data['addUserLastName'] ?? '';
+    $age       = !empty($data['addUserAge']) ? (int)$data['addUserAge'] : null;
+
+    // Insert user
+    $this->userModel->insert([
+        'username' => $data['addUserName'],
+        'email'    => $data['addUserEmail'],
+        'firstname'=> $firstname,
+        'lastname' => $lastname,
+        'age'      => $age,
+        'type'     => $data['addUserRole'],
+        'status'   => 'active',
+        'password' => password_hash($data['addUserPassword'], PASSWORD_DEFAULT),
+    ]);
+
+    return $this->response->setJSON(['status' => 'success']);
+}
+
 
     public function editUser($id)
     {
