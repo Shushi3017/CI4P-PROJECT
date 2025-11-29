@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Portal</title>
+          <link rel="icon" type="image/x-icon" href="<?= base_url('favicon2.ico') ?>">
+    <title>User Manager</title>
 
     <!-- Load Inter font and Tailwind CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">

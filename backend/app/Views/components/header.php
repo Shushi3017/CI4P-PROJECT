@@ -287,13 +287,10 @@ $user = $session->get('user'); // null if not logged in
                     </div>
                     <div
                         class="dropdown-menu hidden absolute top-full left-0 mt-0 w-48 bg-gray-900 border border-gray-700 shadow-xl rounded-sm overflow-hidden">
-                        <a href="#settings"
-                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">Settings</a>
-                        <a href="#profile"
-                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">Profile</a>
-                        <a href="#about"
-                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">About
-                            Us</a>
+                        <a href="/roadmap"
+                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">Roadmap</a>
+                        <a href="/moodboard"
+                            class="block px-4 py-3 text-sm text-gray-300 hover:bg-blue-900/50 hover:text-white transition">Moodboard</a>
                     </div>
                 </div>
             </div>
@@ -307,27 +304,40 @@ $user = $session->get('user'); // null if not logged in
 
         <!-- RIGHT SECTION: User / Login -->
         <?php if ($user): ?>
-        <div class="relative group flex items-center cursor-pointer">
-            <a href="<?= base_url('/profile') ?>"
-                class="text-xl font-bold tracking-wider text-gray-300 hover:text-glow transition duration-300">
-                <?= esc($user['username']) ?>
+<div class="relative group flex items-center cursor-pointer">
+
+    <!-- Username -->
+    <div class="text-xl font-bold tracking-wider text-gray-300 group-hover:text-glow transition duration-300">
+        <a href="<?= base_url('/profile') ?>"><?= esc($user['username']) ?></a>
+    </div>
+
+    <!-- Hover Area Wrapper (IMPORTANT) -->
+    <div class="absolute right-0 top-full pt-2 hidden group-hover:block">
+        <div class="w-40 bg-gray-900 border border-gray-700 shadow-xl rounded-sm overflow-hidden text-sm">
+
+            <a href="<?= base_url('/settings') ?>"
+                class="block px-4 py-2 text-gray-300 hover:bg-blue-900/50 hover:text-white transition">
+                Settings
             </a>
 
-            <!-- Dropdown on hover -->
-            <div
-                class="dropdown-menu hidden absolute right-0 mt-2 w-40 bg-gray-900 border border-gray-700 shadow-xl rounded-sm overflow-hidden text-sm">
-                <a href="<?= base_url('/settings') ?>"
-                    class="block px-4 py-2 text-gray-300 hover:bg-blue-900/50 hover:text-white transition">Settings</a>
-                <a href="<?= base_url('/logout') ?>"
-                    class="block px-4 py-2 text-gray-300 hover:bg-red-700/50 hover:text-white transition">Logout</a>
-            </div>
+            <a href="<?= base_url('/logout') ?>"
+                class="block px-4 py-2 text-gray-300 hover:bg-red-700/50 hover:text-white transition">
+                Logout
+            </a>
+
         </div>
-        <?php else: ?>
-        <a href="<?= base_url('login') ?>"
-            class="flex items-center gap-2 cursor-pointer hover:text-white text-gray-300 transition group">
-            <span class="text-xl font-bold tracking-wider group-hover:text-glow transition duration-300">LOGIN</span>
-        </a>
-        <?php endif; ?>
+    </div>
+
+</div>
+<?php else: ?>
+<a href="<?= base_url('login') ?>"
+    class="flex items-center gap-2 cursor-pointer hover:text-white text-gray-300 transition group">
+    <span class="text-xl font-bold tracking-wider group-hover:text-glow transition duration-300">
+        LOGIN
+    </span>
+</a>
+<?php endif; ?>
+
 
     </nav>
 

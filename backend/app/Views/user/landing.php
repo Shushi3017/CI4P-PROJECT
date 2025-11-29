@@ -9,8 +9,9 @@ $user = $session->get('user'); // null if not logged in
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming Dashboard Template</title>
+    <title>SKYDRIFT GAMEVERSE</title>
     <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="icon" type="image/x-icon" href="<?= base_url('favicon2.ico') ?>">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- <style>
         /* Custom Font for the Tech/Gaming look */
